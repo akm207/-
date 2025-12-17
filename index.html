@@ -8,16 +8,22 @@
     <meta name="keywords" content="قهوجي, قهوجي جدة, قهوجية بجدة, صبابين قهوة, صبابين بجدة, مباشرين قهوة, مباشرين, ضيافة قهوة, خدمات ضيافة جدة, قهوة عربية, خدمة ضيافة راقية">
     
     <style>
-        /* (احتفظ بكود CSS كما هو) */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
+        :root {
+            --primary-color: #8B5A2B;
+            --gold-color: #B8860B;
+            --dark-color: #2c1e12;
+            --light-bg: #fdfbf7;
+        }
+
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: white;
+            background: var(--light-bg);
             color: #333;
             line-height: 1.8;
             overflow-x: hidden;
@@ -25,28 +31,13 @@
 
         /* Animations */
         @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         @keyframes slideDown {
-            from {
-                transform: translateY(-100%);
-            }
-            to {
-                transform: translateY(0);
-            }
+            from { transform: translateY(-100%); }
+            to { transform: translateY(0); }
         }
 
         @keyframes float {
@@ -54,540 +45,263 @@
             50% { transform: translateY(-10px); }
         }
 
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-        }
-
         /* Header */
         header {
-            background: white;
-            padding: 20px 0;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 15px 0;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
             position: sticky;
             top: 0;
             z-index: 1000;
-            animation: slideDown 0.5s ease-out;
+            animation: slideDown 0.6s ease-out;
         }
 
         .logo-container {
             text-align: center;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
 
         .logo-container img {
-            width: 180px;
+            width: 160px;
             height: auto;
-            transition: transform 0.3s;
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
         .logo-container img:hover {
-            transform: scale(1.1) rotate(2deg);
+            transform: scale(1.08);
         }
 
         nav {
             display: flex;
             justify-content: center;
-            gap: 15px;
+            gap: 25px;
             flex-wrap: wrap;
-            padding: 0 20px;
         }
 
         nav a {
-            color: #8B5A2B;
+            color: var(--primary-color);
             text-decoration: none;
             font-size: 16px;
-            font-weight: 600;
-            padding: 10px 20px;
-            border-radius: 5px;
+            font-weight: 700;
+            padding: 8px 15px;
             transition: all 0.3s;
             position: relative;
-            overflow: hidden;
         }
 
-        nav a::before {
+        nav a::after {
             content: '';
             position: absolute;
             bottom: 0;
-            left: 0;
+            right: 50%;
             width: 0;
-            height: 3px;
-            background: #8B5A2B;
-            transition: width 0.3s;
+            height: 2px;
+            background: var(--gold-color);
+            transition: all 0.3s;
         }
 
-        nav a:hover::before {
-            width: 100%;
-        }
-
-        nav a:hover {
-            background: #f5f5f5;
-            transform: translateY(-2px);
-        }
-
-        /* Container */
-        .container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 40px 20px;
+        nav a:hover::after {
+            width: 80%;
+            right: 10%;
         }
 
         /* Hero Section */
         .hero {
             text-align: center;
-            padding: 60px 20px;
-            background: linear-gradient(135deg, #f9f9f9 0%, #e8e8e8 100%);
-            animation: fadeIn 1s ease-out;
+            padding: 100px 20px;
+            background: linear-gradient(rgba(255,255,255,0.8), rgba(255,255,255,0.8)), url('https://www.transparenttextures.com/patterns/cream-paper.png');
             position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '☕';
-            position: absolute;
-            font-size: 200px;
-            opacity: 0.05;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            animation: float 3s ease-in-out infinite;
         }
 
         .hero h1 {
-            font-size: 42px;
-            color: #8B5A2B;
-            margin-bottom: 15px;
-            animation: fadeInUp 0.8s ease-out 0.2s both;
+            font-size: clamp(28px, 5vw, 48px);
+            color: var(--dark-color);
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
         }
 
         .hero p {
-            font-size: 20px;
-            color: #666;
-            margin-bottom: 10px;
-            animation: fadeInUp 0.8s ease-out 0.4s both;
+            font-size: 22px;
+            color: var(--primary-color);
+            font-weight: 500;
         }
 
-        /* About Section */
+        /* Sections Styling */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
         .about-section {
             background: white;
-            padding: 40px 30px;
-            margin-bottom: 40px;
-            animation: fadeInUp 0.8s ease-out;
-            border-radius: 10px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
-            transition: transform 0.3s;
-        }
-
-        .about-section:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            padding: 50px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.04);
+            border: 1px solid rgba(139, 90, 43, 0.1);
+            margin-bottom: 60px;
         }
 
         .about-section h2 {
-            color: #8B5A2B;
-            font-size: 28px;
-            margin-bottom: 20px;
+            color: var(--gold-color);
             text-align: center;
-            position: relative;
-            padding-bottom: 15px;
+            margin-bottom: 30px;
+            font-size: 32px;
         }
 
-        .about-section h2::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 3px;
-            background: linear-gradient(90deg, transparent, #8B5A2B, transparent);
-        }
-
-        .about-section p {
-            font-size: 16px;
-            color: #555;
-            text-align: justify;
-            margin-bottom: 15px;
-            line-height: 1.9;
-        }
-        
-        /* New SEO Content Styling */
         .seo-content {
-            margin-top: 30px;
-            padding: 20px;
-            background: #fdfdfd;
-            border-left: 5px solid #8B5A2B;
-            border-radius: 5px;
-        }
-        .seo-content h3 {
-            color: #6d4520;
-            margin-bottom: 10px;
-            font-size: 22px;
+            margin-top: 40px;
+            padding: 30px;
+            background: #fdf9f3;
+            border-right: 6px solid var(--gold-color);
+            border-radius: 10px;
         }
 
-        /* Services Section */
+        /* Services Grid */
         .services-title {
             text-align: center;
-            color: #8B5A2B;
-            font-size: 36px;
-            margin: 50px 0 30px;
-            animation: fadeInUp 0.8s ease-out;
-            position: relative;
-            padding-bottom: 20px;
-        }
-
-        .services-title::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100px;
-            height: 4px;
-            background: linear-gradient(90deg, transparent, #8B5A2B, transparent);
+            color: var(--dark-color);
+            font-size: 38px;
+            margin-bottom: 50px;
         }
 
         .services-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-bottom: 50px;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 35px;
         }
 
         .service-card {
             background: white;
-            padding: 30px;
-            border: 2px solid #e0e0e0;
-            border-radius: 12px;
+            padding: 20px;
+            border-radius: 15px;
             text-align: center;
             transition: all 0.4s;
-            animation: fadeInUp 0.8s ease-out;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .service-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(139, 90, 43, 0.1), transparent);
-            transition: left 0.5s;
-        }
-
-        .service-card:hover::before {
-            left: 100%;
+            border: 1px solid #eee;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.02);
         }
 
         .service-card:hover {
-            border-color: #8B5A2B;
-            box-shadow: 0 10px 30px rgba(139, 90, 43, 0.2);
-            transform: translateY(-10px);
+            transform: translateY(-15px);
+            box-shadow: 0 20px 40px rgba(139, 90, 43, 0.12);
+            border-color: var(--gold-color);
         }
 
         .service-card img {
             width: 100%;
-            height: 200px;
+            height: 240px;
             object-fit: cover;
-            border-radius: 8px;
-            margin-bottom: 20px;
-            background: #f5f5f5;
-            transition: transform 0.4s;
-        }
-
-        .service-card:hover img {
-            transform: scale(1.05);
-        }
-
-        .service-card h3 {
-            color: #8B5A2B;
-            font-size: 24px;
-            margin-bottom: 15px;
-            transition: color 0.3s;
-        }
-
-        .service-card:hover h3 {
-            color: #6d4520;
-        }
-
-        .service-card p {
-            color: #666;
-            font-size: 15px;
-            line-height: 1.6;
+            border-radius: 12px;
             margin-bottom: 20px;
         }
 
         .view-btn {
             display: inline-block;
-            padding: 12px 35px;
-            background: linear-gradient(135deg, #8B5A2B 0%, #6d4520 100%);
+            padding: 12px 40px;
+            background: var(--primary-color);
             color: white;
+            border-radius: 30px;
             text-decoration: none;
-            border-radius: 25px;
-            font-size: 16px;
             font-weight: 600;
-            transition: all 0.3s;
             border: none;
             cursor: pointer;
-            box-shadow: 0 4px 15px rgba(139, 90, 43, 0.3);
+            transition: 0.3s;
+            margin-top: 15px;
         }
 
         .view-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(139, 90, 43, 0.4);
-            background: linear-gradient(135deg, #6d4520 0%, #8B5A2B 100%);
+            background: var(--gold-color);
+            box-shadow: 0 8px 20px rgba(184, 134, 11, 0.3);
         }
 
-        .view-btn:active {
-            transform: translateY(-1px);
-        }
-
-        /* Detail Page */
+        /* Detail Pages */
         .detail-page {
             display: none;
-            animation: fadeIn 0.5s ease-out;
+            padding: 40px 0;
         }
 
         .detail-page.active {
             display: block;
+            animation: fadeInUp 0.6s ease;
         }
 
         .back-btn {
-            display: inline-block;
-            padding: 12px 30px;
-            background: white;
-            color: #8B5A2B;
-            text-decoration: none;
-            border: 2px solid #8B5A2B;
+            padding: 10px 25px;
+            background: none;
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
             border-radius: 25px;
-            font-size: 16px;
+            cursor: pointer;
             font-weight: 600;
             margin-bottom: 30px;
-            transition: all 0.3s;
-            cursor: pointer;
-        }
-
-        .back-btn:hover {
-            background: #8B5A2B;
-            color: white;
-            transform: translateX(-5px);
-        }
-
-        .detail-header {
-            text-align: center;
-            padding: 40px 20px;
-            background: linear-gradient(135deg, #f9f9f9 0%, #e8e8e8 100%);
-            border-radius: 12px;
-            margin-bottom: 40px;
-            animation: fadeInUp 0.8s ease-out;
-        }
-
-        .detail-header h2 {
-            color: #8B5A2B;
-            font-size: 36px;
-            margin-bottom: 15px;
-        }
-
-        .detail-header p {
-            color: #666;
-            font-size: 18px;
-        }
-
-        .gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            margin: 40px 0;
-        }
-
-        .gallery-item {
-            position: relative;
-            overflow: hidden;
-            border-radius: 12px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            animation: fadeInUp 0.8s ease-out;
-            transition: transform 0.3s;
-        }
-
-        .gallery-item:hover {
-            transform: scale(1.05);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
-        }
-
-        .gallery-item img {
-            width: 100%;
-            height: 250px;
-            object-fit: cover;
-            transition: transform 0.5s;
-        }
-
-        .gallery-item:hover img {
-            transform: scale(1.1);
-        }
-
-        .feature-list {
-            background: white;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
-            animation: fadeInUp 0.8s ease-out 0.2s both;
-        }
-
-        .feature-list h3 {
-            color: #8B5A2B;
-            font-size: 24px;
-            margin-bottom: 20px;
-            text-align: center;
-        }
-
-        .feature-list ul {
-            list-style: none;
-            padding: 0;
         }
 
         .feature-list li {
-            padding: 12px 20px;
+            list-style: none;
+            padding: 15px;
+            background: #fff;
             margin-bottom: 10px;
-            background: #f9f9f9;
-            border-radius: 8px;
-            transition: all 0.3s;
-            position: relative;
-            padding-right: 40px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
         .feature-list li::before {
-            content: '✓';
-            position: absolute;
-            right: 15px;
-            color: #8B5A2B;
-            font-size: 20px;
+            content: '✦';
+            color: var(--gold-color);
             font-weight: bold;
-        }
-
-        .feature-list li:hover {
-            background: #8B5A2B;
-            color: white;
-            transform: translateX(-5px);
-            padding-right: 50px;
-        }
-
-        .feature-list li:hover::before {
-            color: white;
         }
 
         /* Contact Section */
         .contact-section {
-            background: linear-gradient(135deg, #f9f9f9 0%, #e8e8e8 100%);
-            padding: 40px 30px;
-            border-radius: 12px;
+            background: var(--dark-color);
+            color: white;
+            padding: 60px 30px;
+            border-radius: 25px;
             text-align: center;
-            animation: fadeInUp 0.8s ease-out;
-            position: relative;
-            overflow: hidden;
+            margin-top: 60px;
         }
 
-        .contact-section::before {
-            content: '📱';
-            position: absolute;
-            font-size: 150px;
-            opacity: 0.05;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-        }
-
-        .contact-section h2 {
-            color: #8B5A2B;
-            font-size: 28px;
-            margin-bottom: 20px;
-        }
+        .contact-section h2 { color: var(--gold-color); }
 
         .phone-number {
-            font-size: 32px;
-            color: #8B5A2B;
+            font-size: 36px;
             margin: 20px 0;
-            font-weight: 600;
-            direction: ltr;
-            animation: pulse 2s ease-in-out infinite;
+            color: #fff;
+            letter-spacing: 2px;
         }
 
         .contact-btn {
             display: inline-block;
-            padding: 15px 50px;
-            background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+            padding: 18px 50px;
+            background: #25D366;
             color: white;
             text-decoration: none;
             border-radius: 50px;
-            font-size: 18px;
-            font-weight: 600;
-            margin-top: 20px;
-            transition: all 0.3s;
-            box-shadow: 0 5px 20px rgba(37, 211, 102, 0.4);
+            font-size: 20px;
+            font-weight: bold;
+            transition: 0.4s;
         }
 
         .contact-btn:hover {
-            transform: translateY(-3px) scale(1.05);
-            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.5);
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(37, 211, 102, 0.4);
         }
 
-        /* Footer */
         footer {
-            background: #f5f5f5;
-            padding: 30px 20px;
+            background: #f4f1ed;
+            padding: 50px 20px;
             text-align: center;
-            margin-top: 50px;
-            animation: fadeInUp 0.8s ease-out;
-        }
-
-        footer p {
-            color: #666;
-            font-size: 15px;
-            margin: 8px 0;
-        }
-
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin-top: 20px;
-        }
-
-        .social-links a {
-            display: inline-block;
-            width: 45px;
-            height: 45px;
-            line-height: 45px;
-            background: white;
-            color: #8B5A2B;
-            border: 2px solid #8B5A2B;
-            border-radius: 50%;
-            font-size: 20px;
-            text-decoration: none;
-            transition: all 0.3s;
-        }
-
-        .social-links a:hover {
-            background: #8B5A2B;
-            color: white;
-            transform: translateY(-5px) rotate(360deg);
+            border-top: 1px solid #e0dcd8;
         }
 
         /* Responsive */
         @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 28px;
-            }
-            
-            nav a {
-                font-size: 14px;
-                padding: 8px 15px;
-            }
-            
-            .services-grid {
-                grid-template-columns: 1fr;
-            }
+            .about-section { padding: 30px 20px; }
+            .hero h1 { font-size: 32px; }
+            .phone-number { font-size: 28px; }
         }
     </style>
 </head>
@@ -597,75 +311,65 @@
             <img src="https://i.postimg.cc/xdrK6YXb/alqhwt-almklyt-mkanhntdgh-ʿmdwntttajntwahlawahghwyhmytj-(2).png" alt="القهوة الملكية">
         </div>
         <nav>
-            <a href="#" onclick="showPage('home')">الصفحة الرئيسية</a>
-            <a href="#services-men">خدماتنا</a>
-            <a href="#contact">تواصل معنا</a>
+            <a href="#" onclick="showPage('home')">الرئيسية</a>
+            <a href="#services-men" onclick="showPage('home')">خدماتنا</a>
+            <a href="#contact" onclick="showPage('home')">اتصل بنا</a>
         </nav>
     </header>
 
     <div id="home-page">
-        <section class="hero" id="home">
+        <section class="hero">
             <h1>القهوة الملكية | قهوجي جدة - صبابين قهوة فاخرة</h1>
             <p>أفضل خدمات القهوة والضيافة الفاخرة في جدة وخارجها</p>
-            <p>✨ خبرة تتجاوز 20 عامًا في خدمة التميز ✨</p>
+            <p style="margin-top: 10px; font-size: 18px;">✨ خبرة تتجاوز 20 عامًا في خدمة التميز ✨</p>
         </section>
 
         <div class="container">
             <section class="about-section">
                 <h2>القهوة الملكية – أفضل صبابين وقهوجيين داخل وخارج جدة</h2>
                 <p>
-                    في القهوة الملكية، نقدم خدمات ضيافة متكاملة بإشراف نخبة من **قهوجيين** و**صبابين القهوة** المحترفين، داخل **جدة** وخارجها. فريقنا متخصص في تنظيم وتقديم الضيافة في جميع المناسبات، سواء كانت حفلات زفاف، مؤتمرات، مناسبات عائلية، أو فعاليات رسمية، بأسلوب راقٍ يعكس الأصالة والكرم السعودي. نحن نفخر بكوننا من أوائل مزودي خدمة **صبابين بجدة** المتميزين.
+                    في القهوة الملكية، نقدم خدمات ضيافة متكاملة بإشراف نخبة من قهوجيين وصبابين القهوة المحترفين، داخل جدة وخارجها. فريقنا متخصص في تنظيم وتقديم الضيافة في جميع المناسبات، سواء كانت حفلات زفاف، مؤتمرات، مناسبات عائلية، أو فعاليات رسمية، بأسلوب راقٍ يعكس الأصالة والكرم السعودي. نحن نفخر بكوننا من أوائل مزودي خدمة صبابين بجدة المتميزين.
                 </p>
                 <p>
-                    يتميز فريقنا بخبرة تتجاوز 20 عامًا في إعداد وتقديم القهوة العربية الأصيلة بطرق تقليدية تحافظ على جودة الطعم وفخامة التقديم. كما نوفر **قهوجيات نساء محترفات** لتلبية احتياجات المناسبات النسائية، مع عناية خاصة بالنظافة، اللباقة، والمظهر اللائق. إذا كنت تبحث عن **قهوجي جدة** أو **قهوجية بجدة** بخبرة طويلة ومباشرين ملتزمين، فالقهوة الملكية هي خيارك الأول.
+                    يتميز فريقنا بخبرة تتجاوز 20 عامًا في إعداد وتقديم القهوة العربية الأصيلة بطرق تقليدية تحافظ على جودة الطعم وفخامة التقديم. كما نوفر قهوجيات نساء محترفات لتلبية احتياجات المناسبات النسائية، مع عناية خاصة بالنظافة، اللباقة، والمظهر اللائق. إذا كنت تبحث عن قهوجي جدة أو قهوجية بجدة بخبرة طويلة ومباشرين ملتزمين، فالقهوة الملكية هي خيارك الأول.
                 </p>
-                <p>
-                    نولي اهتمامًا كبيرًا بأدق التفاصيل – من تجهيز الطاولات وترتيب المجالس إلى تقديم القهوة، الشاي، التمور، والحلويات بأعلى معايير الجودة باستخدام أدوات تقديم معقّمة ومنسقة بعناية. فريقنا من **مباشرين القهوة** مدرب على تقديم خدمة سريعة ومهنية.
-                </p>
-                <p>
-                    سواء كنت تبحث عن **صبابين قهوة** لمناسبتك في جدة أو في أي مدينة أخرى، نحن نوفر لك فريقًا مدرّبًا يقدم الخدمة بسرعة، تنظيم، واحترام كامل لأصول الضيافة السعودية. اتصل الآن للحصول على أفضل خدمات **القهوجي والمباشرين**.
-                </p>
+                
                 <div class="seo-content">
                     <h3>لماذا تختار القهوة الملكية لخدمات الضيافة في جدة؟</h3>
-                    <p>نحن الخيار الأفضل لتوفير **قهوجي جدة** و**قهوجية بجدة** و**مباشرين قهوة** في المنطقة. نضمن لك ضيافة ملكية لا تُنسى في كافة أنواع الحفلات والمناسبات. تشمل خدماتنا: قهوجي، صبابين، مباشرين، تقديم المشروبات الباردة والساخنة، والحلويات الفاخرة.</p>
-                    <ul>
-                        <li>**قهوجي محترف**: خبرة واسعة في تقديم القهوة العربية الأصيلة.</li>
-                        <li>**صبابين بجدة**: فريق مُدرَّب على فنون الضيافة واللياقة.</li>
-                        <li>**خدمة المباشرين**: ضمان سير الضيافة بسلاسة وتنظيم.</li>
-                    </ul>
+                    <p>نحن الخيار الأفضل لتوفير قهوجي جدة وقهوجية بجدة ومباشرين قهوة في المنطقة. نضمن لك ضيافة ملكية لا تُنسى في كافة أنواع الحفلات والمناسبات.</p>
                 </div>
             </section>
 
-            <h2 class="services-title">خدماتنا الرئيسية: صبابين، قهوجيات، وأدوات فاخرة</h2>
+            <h2 class="services-title">باقات الضيافة الفاخرة</h2>
 
             <div class="services-grid">
                 <div class="service-card" id="services-men">
                     <img src="https://i.postimg.cc/Bn5V5h6f/Whats-App-Image-2025-09-19-at-23-30-43-e8d53a32.jpg" alt="خدمات قهوجي وصبابين بجدة">
-                    <h3>الخدمات الرجالية: قهوجي وصبابين محترفين</h3>
-                    <p>قهوجي و**صبابين قهوة محترفين** لجميع المناسبات الرجالية بأعلى معايير الجودة والأصالة. نحن الخيار الأول لتوفير **قهوجي جدة**.</p>
+                    <h3>الخدمات الرجالية</h3>
+                    <p>قهوجي وصبابين قهوة محترفين لجميع المناسبات الرجالية بأعلى معايير الجودة والأصالة.</p>
                     <button class="view-btn" onclick="showPage('men')">استعراض الخدمة</button>
                 </div>
 
                 <div class="service-card">
                     <img src="https://i.postimg.cc/527bqNjb/Whats-App-Image-2025-10-28-at-15-26-51-19c2657e.jpg" alt="خدمات قهوجية نسائية بجدة">
-                    <h3>الخدمات النسائية: قهوجية بجدة ومباشرات</h3>
-                    <p>**قهوجيات بجدة** ومباشرات محترفات للمناسبات النسائية مع أقصى درجات الاحترافية والخصوصية. احجزي **قهوجية** اليوم!</p>
+                    <h3>الخدمات النسائية</h3>
+                    <p>قهوجيات بجدة ومباشرات محترفات للمناسبات النسائية مع أقصى درجات الاحترافية والخصوصية.</p>
                     <button class="view-btn" onclick="showPage('women')">استعراض الخدمة</button>
                 </div>
 
                 <div class="service-card">
                     <img src="https://i.postimg.cc/vHyYGNC9/Whats-App-Image-2025-09-19-at-23-30-28-a16e7b9f.jpg" alt="أدوات ومباشرين قهوة">
                     <h3>الأدوات والعدة الفاخرة</h3>
-                    <p>أدوات تقديم فاخرة ومعقمة بأحدث التصاميم العصرية والتقليدية. لضيافة تليق بالمناسبات الملكية.</p>
+                    <p>أدوات تقديم فاخرة ومعقمة بأحدث التصاميم العصرية والتقليدية لضيافة ملكية.</p>
                     <button class="view-btn" onclick="showPage('equipment')">استعراض الأدوات</button>
                 </div>
             </div>
 
             <section class="contact-section" id="contact">
-                <h2>تواصل معنا لحجز قهوجي وصبابين جدة</h2>
-                <p>للحجز والاستفسار عن خدمات **القهوجي والمباشرين**:</p>
-                <div class="phone-number">+966536895975</div>
-                <a href="https://wa.me/966536895975" class="contact-btn" target="_blank">💬 تواصل عبر الواتساب الآن</a>
+                <h2>احجز ضيافتك الآن</h2>
+                <p>يسعدنا خدمتك في جميع أنحاء مدينة جدة</p>
+                <div class="phone-number" dir="ltr">+966 53 689 5975</div>
+                <a href="https://wa.me/966536895975" class="contact-btn" target="_blank">💬 تحدث معنا عبر واتساب</a>
             </section>
         </div>
     </div>
@@ -673,147 +377,46 @@
     <div id="men-page" class="detail-page">
         <div class="container">
             <button class="back-btn" onclick="showPage('home')">← العودة للرئيسية</button>
-            
-            <div class="detail-header">
-                <h2>الخدمات الرجالية: قهوجي، صبابين، ومباشرين في جدة</h2>
-                <p>فريقنا من **صبابين القهوة** و**المباشرين** مستعد لتقديم أرقى مستويات الضيافة لجميع مناسباتك الخاصة والعامة.</p>
-            </div>
-
-            <div class="gallery">
-                <div class="gallery-item">
-                    <img src="https://i.postimg.cc/Bn5V5h6f/Whats-App-Image-2025-09-19-at-23-30-43-e8d53a32.jpg" alt="قهوجي محترف في جدة">
-                </div>
-                <div class="gallery-item">
-                    <img src="https://i.postimg.cc/Bn5V5h6f/Whats-App-Image-2025-09-19-at-23-30-43-e8d53a32.jpg" alt="مباشرين قهوة لجميع المناسبات">
-                </div>
-                <div class="gallery-item">
-                    <img src="https://i.postimg.cc/Bn5V5h6f/Whats-App-Image-2025-09-19-at-23-30-43-e8d53a32.jpg" alt="صبابين بجدة لضيافة راقية">
-                </div>
-            </div>
-
-            <div class="feature-list">
-                <h3>مميزات خدمات القهوجي والصبابين الرجالية</h3>
-                <ul>
-                    <li>**قهوجي** و**صبابين** ذوي خبرة عالية في المناسبات الرسمية والاجتماعية.</li>
-                    <li>تقديم القهوة العربية الأصيلة بطريقة تقليدية احترافية.</li>
-                    <li>خدمة الشاي والعصائر والمشروبات الساخنة.</li>
-                    <li>تقديم التمور والحلويات الشعبية والعصرية.</li>
-                    <li>مظهر لائق وزي سعودي تقليدي أنيق لفريق **المباشرين**.</li>
-                    <li>التزام بالمواعيد واحترافية في التعامل.</li>
-                    <li>تجهيز وترتيب المجالس والطاولات.</li>
-                    <li>خدمة داخل وخارج مدينة **جدة**.</li>
+            <div class="about-section">
+                <h2>الخدمات الرجالية: قهوجي ومباشرين</h2>
+                <ul class="feature-list">
+                    <li>قهوجي وصبابين ذوي خبرة عالية في المناسبات الرسمية.</li>
+                    <li>تقديم القهوة العربية الأصيلة بطريقة تقليدية.</li>
+                    <li>خدمة الشاي والعصائر والمشروبات الساخنة والباردة.</li>
+                    <li>زي سعودي تقليدي أنيق وموحد لجميع الفريق.</li>
+                    <li>التزام تام بالمواعيد ودقة في التنفيذ.</li>
                 </ul>
             </div>
-            
-            <div class="seo-content">
-                <h3>صبابين قهوة في جدة على مدار الساعة</h3>
-                <p>نحن نوفر أفضل خدمة **صبابين بجدة**، سواء كنت تحتاج إلى **قهوجي** لحفل زفاف، أو **مباشرين** لمؤتمر عمل. جودة الخدمة هي شعارنا، ونحرص على توفير طاقم ضيافة متميز يترك انطباعاً إيجابياً لدى ضيوفك. لا تتردد في طلب **قهوجي جدة** أو فريق **مباشرين قهوة** لحجز خدمة مميزة.</p>
-            </div>
-
-            <section class="contact-section">
-                <h2>احجز الآن</h2>
-                <p>تواصل معنا لحجز **صبابين القهوة** و**المباشرين**</p>
-                <div class="phone-number">+966536895975</div>
-                <a href="https://wa.me/966536895975" class="contact-btn" target="_blank">💬 احجز عبر الواتساب</a>
-            </section>
         </div>
     </div>
 
     <div id="women-page" class="detail-page">
         <div class="container">
             <button class="back-btn" onclick="showPage('home')">← العودة للرئيسية</button>
-            
-            <div class="detail-header">
-                <h2>الخدمات النسائية: قهوجية بجدة ومباشرات محترفات</h2>
-                <p>نقدم خدمة **قهوجية بجدة** ومباشرات نسائية بأعلى معايير الخصوصية والاحترافية لمناسباتكم السعيدة.</p>
-            </div>
-
-            <div class="gallery">
-                <div class="gallery-item">
-                    <img src="https://i.postimg.cc/527bqNjb/Whats-App-Image-2025-10-28-at-15-26-51-19c2657e.jpg" alt="قهوجية نسائية لخدمة المناسبات">
-                </div>
-                <div class="gallery-item">
-                    <img src="https://i.postimg.cc/527bqNjb/Whats-App-Image-2025-10-28-at-15-26-51-19c2657e.jpg" alt="مباشرات قهوة نسائية محترفات">
-                </div>
-                <div class="gallery-item">
-                    <img src="https://i.postimg.cc/527bqNjb/Whats-App-Image-2025-10-28-at-15-26-51-19c2657e.jpg" alt="أفضل قهوجية بجدة">
-                </div>
-            </div>
-
-            <div class="feature-list">
-                <h3>ما نقدمه في الخدمات النسائية (قهوجية ومباشرات)</h3>
-                <ul>
-                    <li>**قهوجيات نساء محترفات** بخبرة واسعة.</li>
-                    <li>احترام تام للخصوصية والآداب العامة.</li>
-                    <li>تقديم القهوة العربية والشاي والمشروبات.</li>
-                    <li>تنسيق وتجهيز طاولات الحلويات والضيافة.</li>
-                    <li>مظهر لائق ومحتشم يليق بالمناسبات.</li>
-                    <li>نظافة وتعقيم شامل للأدوات.</li>
-                    <li>تقديم استشارات لتنظيم المناسبات النسائية.</li>
-                    <li>خدمة متميزة لحفلات الزفاف والمناسبات الخاصة.</li>
+            <div class="about-section">
+                <h2>الخدمات النسائية: قهوجية ومباشرات</h2>
+                <ul class="feature-list">
+                    <li>قهوجيات نساء محترفات يتمتعن باللباقة والخبرة.</li>
+                    <li>خصوصية تامة واحترافية في التعامل مع الضيوف.</li>
+                    <li>تنسيق طاولات الحلويات والضيافة النسائية بشكل عصري.</li>
+                    <li>نظافة فائقة وتعقيم دوري لجميع الأدوات المستخدمة.</li>
                 </ul>
             </div>
-            
-            <div class="seo-content">
-                <h3>خدمة قهوجية بجدة لضيافة نسائية متكاملة</h3>
-                <p>إذا كنتِ تبحثين عن **قهوجية بجدة** موثوقة ومحترفة لضمان راحة ضيوفك، فنحن هنا لخدمتك. فريقنا النسائي المدرب من **المباشرات** سيقوم بكافة ترتيبات الضيافة بكفاءة عالية، من تجهيز القهوة حتى تقديم الشاي والعصائر الفاخرة. اعتمدي على **القهوة الملكية** لأفضل **قهوجية**.</p>
-            </div>
-
-            <section class="contact-section">
-                <h2>احجزي الآن</h2>
-                <p>تواصلي معنا لحجز **قهوجيات محترفات**</p>
-                <div class="phone-number">+966536895975</div>
-                <a href="https://wa.me/966536895975" class="contact-btn" target="_blank">💬 احجزي عبر الواتساب</a>
-            </section>
         </div>
     </div>
 
     <div id="equipment-page" class="detail-page">
         <div class="container">
             <button class="back-btn" onclick="showPage('home')">← العودة للرئيسية</button>
-            
-            <div class="detail-header">
-                <h2>الأدوات والعدة: فخامة الأدوات لخدمة صبابين قهوة مميزة</h2>
-                <p>أجود أدوات التقديم الفاخرة والمعقمة التي يستخدمها **القهوجي** و**الصبابين** لتقديم ضيافة ملكية.</p>
-            </div>
-
-            <div class="gallery">
-                <div class="gallery-item">
-                    <img src="https://i.postimg.cc/vHyYGNC9/Whats-App-Image-2025-09-19-at-23-30-28-a16e7b9f.jpg" alt="دلال قهوة فاخرة">
-                </div>
-                <div class="gallery-item">
-                    <img src="https://i.postimg.cc/vHyYGNC9/Whats-App-Image-2025-09-19-at-23-30-28-a16e7b9f.jpg" alt="أطقم تقديم شاي راقية">
-                </div>
-                <div class="gallery-item">
-                    <img src="https://i.postimg.cc/vHyYGNC9/Whats-App-Image-2025-09-19-at-23-30-28-a16e7b9f.jpg" alt="أدوات مباشرين قهوة معقمة">
-                </div>
-            </div>
-
-            <div class="feature-list">
-                <h3>أدواتنا الفاخرة لخدمة المباشرين والصبابين</h3>
-                <ul>
-                    <li>دلال قهوة عربية فاخرة مصنوعة من النحاس الأصلي.</li>
-                    <li>فناجين قهوة راقية بتصاميم عصرية وتقليدية.</li>
-                    <li>صواني تقديم فضية وذهبية فاخرة.</li>
-                    <li>براد شاي وأكواب زجاجية أنيقة.</li>
-                    <li>أطباق تقديم التمور والحلويات.</li>
-                    <li>مباخر عود فاخرة لإضفاء الأجواء الأصيلة.</li>
-                    <li>طاولات خدمة متنقلة ومرتبة لراحة **المباشرين**.</li>
-                    <li>جميع الأدوات معقمة ونظيفة بأعلى المعايير.</li>
+            <div class="about-section">
+                <h2>الأدوات والعدة الفاخرة</h2>
+                <ul class="feature-list">
+                    <li>دلال نحاسية مطلية بالذهب والفضة.</li>
+                    <li>فناجين وأطقم تقديم من أرقى الماركات.</li>
+                    <li>مباخر ملكية لإضفاء رائحة العود الأصيل.</li>
+                    <li>صواني تقديم فاخرة تتناسب مع نوع المناسبة.</li>
                 </ul>
             </div>
-            
-            <div class="seo-content">
-                <h3>ضيافة متكاملة بأدوات راقية: قهوجي، صبابين، مباشرين</h3>
-                <p>نحن نؤمن بأن فخامة الضيافة تبدأ من جودة الأدوات. يستخدم **قهوجي جدة** و**صبابين القهوة** لدينا أجود وأفخم أدوات التقديم المعقمة. هذا الاهتمام بالتفاصيل يضمن تجربة ضيافة لا تُنسى لضيوفك، سواء في المناسبات الكبيرة أو الخاصة.</p>
-            </div>
-
-            <section class="contact-section">
-                <h2>استفسر عن الأدوات</h2>
-                <p>تواصل معنا للاستفسار عن الأدوات والعدة</p>
-                <div class="phone-number">+966536895975</div>
-                <a href="https://wa.me/966536895975" class="contact-btn" target="_blank">💬 تواصل عبر الواتساب</a>
-            </section>
         </div>
     </div>
 
@@ -836,38 +439,18 @@
 
     <script>
         function showPage(page) {
-            // Hide all pages
             document.getElementById('home-page').style.display = 'none';
             document.getElementById('men-page').classList.remove('active');
             document.getElementById('women-page').classList.remove('active');
             document.getElementById('equipment-page').classList.remove('active');
 
-            // Show selected page
             if (page === 'home') {
                 document.getElementById('home-page').style.display = 'block';
-            } else if (page === 'men') {
-                document.getElementById('men-page').classList.add('active');
-            } else if (page === 'women') {
-                document.getElementById('women-page').classList.add('active');
-            } else if (page === 'equipment') {
-                document.getElementById('equipment-page').classList.add('active');
+            } else {
+                document.getElementById(page + '-page').classList.add('active');
             }
-
-            // Scroll to top
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
-
-        // Add scroll animations
-        window.addEventListener('scroll', function() {
-            const elements = document.querySelectorAll('.service-card, .about-section, .feature-list, .seo-content');
-            elements.forEach(element => {
-                const position = element.getBoundingClientRect();
-                if (position.top < window.innerHeight - 100) {
-                    element.style.opacity = '1';
-                    element.style.transform = 'translateY(0)';
-                }
-            });
-        });
     </script>
 </body>
 </html>
