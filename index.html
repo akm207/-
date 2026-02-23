@@ -3,205 +3,130 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>دلة الشيوخ | للضيافة العربية الفاخرة بجدة</title>
-    
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Reem+Kufi:wght@400;700&display=swap');
-
-        :root { 
-            --gold-gradient: linear-gradient(45deg, #B8860B, #FFD700, #DB7093);
-            --royal-gold: #c5a059;
-            --deep-black: #0a0a0a;
-            --marble-bg: url('https://www.transparenttextures.com/patterns/white-diamond.png');
-        }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { 
-            font-family: 'Amiri', serif; 
-            background-color: #fcfcfc; 
-            background-image: var(--marble-bg);
-            color: #333;
-            overflow-x: hidden;
-        }
-
-        /* زخرفة علوية */
-        .top-border { height: 5px; background: var(--gold-gradient); width: 100%; }
-
-        header { 
-            background: rgba(255, 255, 255, 0.98); 
-            padding: 15px 0; 
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-            position: sticky; top: 0; z-index: 1000;
-            border-bottom: 2px solid var(--royal-gold);
-        }
-
-        .nav-container { 
-            max-width: 1200px; margin: 0 auto; 
-            display: flex; justify-content: space-between; align-items: center; padding: 0 20px; 
-        }
-
-        .logo { 
-            font-family: 'Reem Kufi', sans-serif;
-            font-size: 30px; color: var(--deep-black);
-            font-weight: bold;
-        }
-        .logo span { color: var(--royal-gold); }
-
-        .contact-header { font-size: 14px; font-weight: bold; color: var(--royal-gold); }
-
-        nav a { 
-            text-decoration: none; color: var(--deep-black); 
-            margin: 0 10px; font-size: 16px; font-weight: bold;
-            transition: 0.3s;
-        }
-        nav a:hover { color: var(--royal-gold); }
-
-        /* الهيرو */
-        .hero { 
-            height: 70vh; 
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?q=80&w=2070&auto=format&fit=crop'); 
-            background-size: cover; background-position: center; 
-            display: flex; align-items: center; justify-content: center;
-        }
-
-        .hero-overlay {
-            border: 2px solid var(--royal-gold);
-            padding: 40px; background: rgba(0, 0, 0, 0.4);
-            backdrop-filter: blur(5px); text-align: center;
-        }
-
-        .hero h1 { font-size: clamp(2rem, 5vw, 4rem); color: white; margin-bottom: 10px; }
-
-        /* الخدمات */
-        .services-section { padding: 60px 20px; text-align: center; }
-        .decoration-line { width: 100px; height: 2px; background: var(--royal-gold); margin: 20px auto; position: relative; }
-        .decoration-line::after { content: '⚜'; position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: #fcfcfc; padding: 0 10px; color: var(--royal-gold); }
-
-        .grid { 
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
-            gap: 30px; max-width: 1200px; margin: 0 auto; padding-top: 30px;
-        }
-
-        .card { background: white; padding: 10px; border: 1px solid #ddd; transition: 0.4s; }
-        .card-inner { border: 1px solid var(--royal-gold); padding: 20px; }
-        .card:hover { transform: translateY(-10px); box-shadow: 0 15px 30px rgba(0,0,0,0.1); }
-        .card img { width: 100%; height: 220px; object-fit: cover; margin-bottom: 15px; }
-
-        .gold-btn {
-            display: inline-block; padding: 10px 30px; background: var(--deep-black);
-            color: white; text-decoration: none; font-weight: bold;
-            border: 1px solid var(--royal-gold); transition: 0.3s;
-        }
-        .gold-btn:hover { background: var(--royal-gold); }
-
-        /* فوتر وتواصل اجتماعي */
-        footer {
-            background: #0d0d0d; color: white; padding: 50px 20px; text-align: center;
-            border-top: 5px solid var(--royal-gold);
-        }
-
-        .social-links { display: flex; justify-content: center; gap: 20px; margin: 25px 0; }
-        .social-links a { 
-            color: white; text-decoration: none; background: #222; 
-            width: 45px; height: 45px; display: flex; align-items: center; justify-content: center;
-            border-radius: 50%; border: 1px solid var(--royal-gold); transition: 0.3s;
-        }
-        .social-links a:hover { background: var(--royal-gold); transform: translateY(-5px); }
-        .social-links img { width: 20px; filter: invert(1); }
-
-        .whatsapp-icon {
-            position: fixed; bottom: 30px; right: 30px; width: 60px; height: 60px;
-            background: #25d366; border-radius: 50%; display: flex; align-items: center; justify-content: center;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2); z-index: 1000;
-        }
-
-        @media (max-width: 768px) { nav { display: none; } }
-    </style>
+    <title>The Full Premium Menu | المنيو الشامل</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
 </head>
 <body>
 
-<div class="top-border"></div>
-
-<header>
-    <div class="nav-container">
-        <div class="logo">دلة <span>الشيوخ</span></div>
-        <nav>
-            <a href="index.html">الرئيسية</a>
-            <a href="men.html">قسم الرجال</a>
-            <a href="women.html">قسم النساء</a>
-            <a href="equipment.html">المعدات</a>
-        </nav>
-        <div class="contact-header">📞 0536895975</div>
+    <div class="helper-section">
+        <div class="bubble" id="chatBubble">أهلاً بك! جرب القهوة العربية بالزعفران، طعم أصيل!</div>
+        <img src="https://cdn-icons-png.flaticon.com/512/4140/4140037.png" id="helperImg" alt="Barista">
     </div>
-</header>
 
-<section class="hero">
-    <div class="hero-overlay">
-        <h1>دلة الشيوخ للضيافة</h1>
-        <p style="color: #ddd;">عنوان الفخامة والكرم العربي في جدة</p>
-    </div>
-</section>
+    <header>
+        <div class="logo">PREMIUM<span>CAFE</span></div>
+        <p>قائمة المأكولات والمشروبات</p>
+    </header>
 
-<section class="services-section">
-    <h2 style="font-family: 'Reem Kufi'; font-size: 35px;">خدماتنا الملكية</h2>
-    <div class="decoration-line"></div>
-    
-    <div class="grid">
-        <div class="card">
-            <div class="card-inner">
-                <img src="https://images.unsplash.com/photo-1565181990741-630266e40edb?q=80&w=2070&auto=format&fit=crop" alt="ضيافة الرجال">
-                <h3>مجلس الرجال</h3>
-                <p style="margin-bottom: 15px;">صبابين بزي رسمي فاخر لخدمة تليق بضيوفكم.</p>
-                <a href="men.html" class="gold-btn">التفاصيل</a>
+    <nav class="nav-bar">
+        <button onclick="scrollToSection('hot-coffee')">☕ ساخنة</button>
+        <button onclick="scrollToSection('cold-coffee')">🧊 باردة</button>
+        <button onclick="scrollToSection('others')">🍹 مشروبات أخرى</button>
+        <button onclick="scrollToSection('sweets')">🍰 حلويات</button>
+        <button onclick="scrollToSection('bakery')">🥐 مخبوزات</button>
+    </nav>
+
+    <main class="container">
+        
+        <section id="hot-coffee">
+            <h2 class="main-title">☕ القهوة الساخنة</h2>
+            
+            <h3 class="sub-title">Espresso</h3>
+            <div class="grid">
+                <div class="card"><img src="https://images.unsplash.com/photo-1510591509098-f4fdc6d0ff04?w=200"><h3>اسبريسو</h3><span>12 SR</span></div>
+                <div class="card"><img src="https://images.unsplash.com/photo-1510591509098-f4fdc6d0ff04?w=200"><h3>دبل اسبريسو</h3><span>15 SR</span></div>
             </div>
-        </div>
 
-        <div class="card">
-            <div class="card-inner">
-                <img src="https://images.unsplash.com/photo-1520854221256-17451cc331bf?q=80&w=2070&auto=format&fit=crop" alt="ضيافة النساء">
-                <h3>قسم السيدات</h3>
-                <p style="margin-bottom: 15px;">مباشرات محترفات لخدمة المناسبات النسائية بخصوصية.</p>
-                <a href="women.html" class="gold-btn">التفاصيل</a>
+            <h3 class="sub-title">Black Coffee</h3>
+            <div class="grid">
+                <div class="card"><img src="https://images.unsplash.com/photo-1551030173-122aabc4489c?w=200"><h3>أمريكانو</h3><span>15 SR</span></div>
+                <div class="card"><img src="https://images.unsplash.com/photo-1544787210-2213d84ad960?w=200"><h3>قهوة اليوم (فلتر)</h3><span>18 SR</span></div>
             </div>
-        </div>
 
-        <div class="card">
-            <div class="card-inner">
-                <img src="https://images.unsplash.com/photo-1544967082-d9d25d867d66?q=80&w=2080&auto=format&fit=crop" alt="تجهيزات ضيافة">
-                <h3>تأجير المعدات</h3>
-                <p style="margin-bottom: 15px;">دلال ملكية، مباخر عود، وفناجين مذهبة فاخرة.</p>
-                <a href="equipment.html" class="gold-btn">التفاصيل</a>
+            <h3 class="sub-title">Milk Based</h3>
+            <div class="grid">
+                <div class="card"><img src="https://images.unsplash.com/photo-1541167760496-1628856ab772?w=200"><h3>لاتيه</h3><span>19 SR</span></div>
+                <div class="card"><img src="https://images.unsplash.com/photo-1572442388796-11668a67e53d?w=200"><h3>كابتشينو</h3><span>19 SR</span></div>
+                <div class="card"><img src="https://images.unsplash.com/photo-1517701604599-bb29b565090c?w=200"><h3>فلات وايت</h3><span>17 SR</span></div>
+                <div class="card"><img src="https://images.unsplash.com/photo-1553909489-ec2175ef3f52?w=200"><h3>سبانش لاتيه</h3><span>22 SR</span></div>
+                <div class="card"><img src="https://images.unsplash.com/photo-1595111110354-944510b65378?w=200"><h3>موكا</h3><span>21 SR</span></div>
+                <div class="card"><img src="https://images.unsplash.com/photo-1594236054813-f66108151322?w=200"><h3>وايت موكا</h3><span>21 SR</span></div>
+                <div class="card"><img src="https://images.unsplash.com/photo-1485808191679-5f63bb3fd885?w=200"><h3>كراميل ماكياتو</h3><span>21 SR</span></div>
             </div>
-        </div>
-    </div>
-</section>
 
-<footer>
-    <div style="font-size: 28px; font-family: 'Reem Kufi'; color: var(--royal-gold);">دلة الشيوخ</div>
-    <p>نسعد بخدمتكم في كافة مناسباتكم بجدة</p>
-    
-    <div class="social-links">
-        <a href="رابط_تيك_توك_1" target="_blank" title="تيك توك 1">
-            <img src="https://cdn-icons-png.flaticon.com/512/3046/3046121.png" alt="TikTok">
-        </a>
-        <a href="رابط_تيك_توك_2" target="_blank" title="تيك توك 2">
-            <img src="https://cdn-icons-png.flaticon.com/512/3046/3046121.png" alt="TikTok">
-        </a>
-        <a href="رابط_انستقرام" target="_blank" title="انستقرام">
-            <img src="https://cdn-icons-png.flaticon.com/512/174/174855.png" alt="Instagram">
-        </a>
-        <a href="https://wa.me/966536895975" target="_blank" title="واتساب">
-            <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp">
-        </a>
-    </div>
+            <h3 class="sub-title">قهوة عربية</h3>
+            <div class="grid">
+                <div class="card"><img src="https://images.unsplash.com/photo-1580915411954-282cb1b0d780?w=200"><h3>عربية عادية</h3><span>30 SR</span></div>
+                <div class="card"><img src="https://images.unsplash.com/photo-1580915411954-282cb1b0d780?w=200"><h3>عربية بالزعفران</h3><span>35 SR</span></div>
+            </div>
+        </section>
 
-    <p>جدة | هاتف: 0536895975</p>
-    <p style="font-size: 12px; color: #666; margin-top: 20px;">© 2026 دلة الشيوخ - جميع الحقوق محفوظة</p>
-</footer>
+        <section id="cold-coffee">
+            <h2 class="main-title">🧊 القهوة الباردة</h2>
+            <div class="grid">
+                <div class="card"><img src="https://images.unsplash.com/photo-1517701550927-30cf4bb1dba5?w=200"><h3>آيس أمريكانو</h3><span>16 SR</span></div>
+                <div class="card"><img src="https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=200"><h3>آيس لاتيه</h3><span>20 SR</span></div>
+                <div class="card"><img src="https://images.unsplash.com/photo-1553909489-ec2175ef3f52?w=200"><h3>آيس سبانش لاتيه</h3><span>23 SR</span></div>
+                <div class="card"><img src="https://images.unsplash.com/photo-1595111110354-944510b65378?w=200"><h3>آيس موكا</h3><span>22 SR</span></div>
+                <div class="card"><img src="https://images.unsplash.com/photo-1594236054813-f66108151322?w=200"><h3>آيس وايت موكا</h3><span>22 SR</span></div>
+                <div class="card"><img src="https://images.unsplash.com/photo-1485808191679-5f63bb3fd885?w=200"><h3>آيس كراميل ماكياتو</h3><span>22 SR</span></div>
+                <div class="card"><img src="https://images.unsplash.com/photo-1543253332-999330833215?w=200"><h3>كولد برو</h3><span>25 SR</span></div>
+            </div>
+        </section>
 
-<a href="https://wa.me/966536895975" class="whatsapp-icon">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" style="width: 30px;">
-</a>
+        <section id="others">
+            <h2 class="main-title">🍫 مشروبات أخرى</h2>
+            <h3 class="sub-title">ساخنة</h3>
+            <div class="grid">
+                <div class="card"><img src="https://images.unsplash.com/photo-1544145945-f904253d0c7b?w=200"><h3>هوت شوكليت</h3><span>18 SR</span></div>
+                <div class="card"><img src="https://images.unsplash.com/photo-1544787210-2213d84ad960?w=200"><h3>شاي أحمر</h3><span>10 SR</span></div>
+                <div class="card"><img src="https://images.unsplash.com/photo-1627435601361-ec25f5b1d0e5?w=200"><h3>شاي أخضر</h3><span>10 SR</span></div>
+                <div class="card"><img src="https://images.unsplash.com/photo-1561336313-0bd5e0b27ec8?w=200"><h3>شاي كرك</h3><span>12 SR</span></div>
+            </div>
+            <h3 class="sub-title">باردة</h3>
+            <div class="grid">
+                <div class="card"><img src="https://images.unsplash.com/photo-1499638673689-79a0b5115d87?w=200"><h3>آيس تي خوخ</h3><span>18 SR</span></div>
+                <div class="card"><img src="https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?w=200"><h3>آيس تي ليمون</h3><span>18 SR</span></div>
+                <div class="card"><img src="https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?w=200"><h3>موهيتو كلاسيك</h3><span>21 SR</span></div>
+                <div class="card"><img src="https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?w=200"><h3>موهيتو فراولة</h3><span>21 SR</span></div>
+                <div class="card"><img src="https://images.unsplash.com/photo-1613478223719-2ab802602423?w=200"><h3>عصير برتقال</h3><span>15 SR</span></div>
+                <div class="card"><img src="https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?w=200"><h3>ليمون نعناع</h3><span>15 SR</span></div>
+                <div class="card"><img src="https://images.unsplash.com/photo-1559839914-17aae19cea9e?w=200"><h3>مياه</h3><span>5 SR</span></div>
+                <div class="card"><img src="https://images.unsplash.com/photo-1559839914-17aae19cea9e?w=200"><h3>مياه غازية</h3><span>10 SR</span></div>
+            </div>
+        </section>
 
+        <section id="sweets">
+            <h2 class="main-title">🍰 الحلويات</h2>
+            <div class="grid">
+                <div class="card"><img src="https://images.unsplash.com/photo-1533134242443-d4fd215305ad?w=200"><h3>تشيزكيك فراولة</h3><span>26 SR</span></div>
+                <div class="card"><img src="https://images.unsplash.com/photo-1533134242443-d4fd215305ad?w=200"><h3>تشيزكيك لوتس</h3><span>26 SR</span></div>
+                <div class="card"><img src="https://images.unsplash.com/photo-1533134242443-d4fd215305ad?w=200"><h3>تشيزكيك فستق</h3><span>26 SR</span></div>
+                <div class="card"><img src="https://images.unsplash.com/photo-1579372781878-66802b286cfc?w=200"><h3>سان سباستيان</h3><span>28 SR</span></div>
+                <div class="card"><img src="https://images.unsplash.com/photo-1586040140378-b5634cb4c8fc?w=200"><h3>ريد فيلفت</h3><span>24 SR</span></div>
+                <div class="card"><img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=200"><h3>كيكة شوكولاتة</h3><span>24 SR</span></div>
+                <div class="card"><img src="https://images.unsplash.com/photo-1551024601-bec78aea704b?w=200"><h3>براونيز</h3><span>22 SR</span></div>
+                <div class="card"><img src="https://images.unsplash.com/photo-1571115177098-24ec42ed2bb4?w=200"><h3>تيراميسو</h3><span>25 SR</span></div>
+                <div class="card"><img src="https://images.unsplash.com/photo-1562329265-95a6d7a6bc44?w=200"><h3>وافل</h3><span>25 SR</span></div>
+                <div class="card"><img src="https://images.unsplash.com/photo-1528207776546-365bb710ee93?w=200"><h3>بانكيك</h3><span>25 SR</span></div>
+            </div>
+        </section>
+
+        <section id="bakery">
+            <h2 class="main-title">🥐 المخبوزات</h2>
+            <div class="grid">
+                <div class="card"><img src="https://images.unsplash.com/photo-1555507036-ab1f4038808a?w=200"><h3>كرواسون زبدة</h3><span>14 SR</span></div>
+                <div class="card"><img src="https://images.unsplash.com/photo-1555507036-ab1f4038808a?w=200"><h3>كرواسون جبن</h3><span>15 SR</span></div>
+                <div class="card"><img src="https://images.unsplash.com/photo-1555507036-ab1f4038808a?w=200"><h3>كرواسون شوكولاتة</h3><span>16 SR</span></div>
+                <div class="card"><img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?w=200"><h3>دنش قرفة</h3><span>12 SR</span></div>
+                <div class="card"><img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?w=200"><h3>فطيرة سبانخ</h3><span>10 SR</span></div>
+                <div class="card"><img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?w=200"><h3>فطيرة جبن</h3><span>10 SR</span></div>
+            </div>
+        </section>
+
+    </main>
+
+    <script src="script.js"></script>
 </body>
 </html>
