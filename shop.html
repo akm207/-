@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>المتجر الفاخر | تمور النخبة</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;900&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --royal-brown: #2C1A0D;
+            --royal-gold: #D4AF37;
+            --soft-white: #FDFBF7;
+            --border-gold: #E0C987;
+            --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Tajawal', sans-serif; 
+            background-color: var(--soft-white); 
+            direction: rtl;
+        }
+
+        /* --- الهيدر والبار العلوي --- */
+        .promo-bar {
+            background: var(--royal-brown); color: var(--royal-gold);
+            text-align: center; padding: 10px 0; font-size: 13px; font-weight: 600;
+            position: fixed; top: 0; width: 100%; z-index: 1001;
+            border-bottom: 1px solid var(--royal-gold);
+        }
+
+        header {
+            position: fixed; top: 38px; width: 100%; z-index: 1000;
+            background: rgba(255, 255, 255, 0.98); backdrop-filter: blur(15px);
+            padding: 15px 5%; display: flex; justify-content: space-between; align-items: center;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+        }
+
+        .logo { font-family: 'Playfair Display', serif; font-size: 26px; font-weight: 900; color: var(--royal-brown); text-decoration: none; }
+        .logo span { color: var(--royal-gold); }
+
+        .nav-links { display: flex; gap: 30px; }
+        .nav-links a { text-decoration: none; font-weight: 700; color: var(--royal-brown); transition: 0.3s; }
+        .nav-links a:hover, .nav-links a.active { color: var(--royal-gold); }
+
+        .header-actions { display: flex; gap: 20px; font-size: 20px; color: var(--royal-brown); }
+        .cart-icon { position: relative; cursor: pointer; }
+        .cart-count { 
+            position: absolute; top: -10px; right: -10px; 
+            background: var(--royal-gold); color: white; 
+            width: 18px; height: 18px; border-radius: 50%; 
+            display: flex; align-items: center; justify-content: center; 
+            font-size: 10px; font-weight: bold;
+        }
+
+        /* --- حاوية المتجر --- */
+        .shop-container { max-width: 1350px; margin: 120px auto 80px; padding: 0 5%; }
+
+        /* --- تصميم عناوين الأقسام الفاخرة --- */
+        .category-section {
+            margin-bottom: 80px;
+        }
+
+        .category-title {
+            text-align: center;
+            position: relative;
+            margin-bottom: 40px;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .category-title span {
+            font-size: 28px;
+            font-weight: 900;
+            color: var(--royal-brown);
+            background-color: var(--soft-white); /* لإخفاء الخط خلف النص */
+            padding: 0 25px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .category-title::before {
+            content: '';
+            position: absolute;
+            top: 50%; left: 0; right: 0;
+            height: 1px;
+            background: var(--border-gold);
+            z-index: 1;
+        }
+
+        /* --- الشبكة والكروت --- */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 35px;
+        }
+
+        .item-card {
+            background: white;
+            border: 2px solid var(--border-gold);
+            padding: 10px;
+            transition: var(--transition);
+            position: relative;
+            display: flex; flex-direction: column;
+        }
+
+        .item-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--royal-gold);
+            box-shadow: 0 15px 35px rgba(44, 26, 13, 0.08);
+        }
+
+        .item-image { height: 320px; width: 100%; overflow: hidden; position: relative; background: #f9f9f9; }
+        .item-image img { width: 100%; height: 100%; object-fit: cover; transition: 0.8s; }
+        .item-card:hover .item-image img { transform: scale(1.1); }
+
+        .badge {
+            position: absolute; top: 10px; right: 10px;
+            background: var(--royal-brown); color: var(--royal-gold);
+            padding: 4px 12px; font-size: 11px; font-weight: bold; z-index: 2;
+        }
+
+        .item-content { padding: 20px 10px; text-align: center; display: flex; flex-direction: column; flex-grow: 1; }
+        .item-title { font-size: 19px; font-weight: 800; margin-bottom: 15px; color: var(--royal-brown); text-decoration: none; }
+        .item-title:hover { color: var(--royal-gold); }
+        
+        .item-footer {
+            display: flex; justify-content: space-between; align-items: center;
+            margin-top: auto; padding-top: 15px; border-top: 1px solid #f5f5f5;
+        }
+
+        .item-price { font-size: 22px; font-weight: 900; color: var(--royal-brown); }
+        .item-price span { font-size: 14px; color: #888; margin-right: 5px; font-weight: normal; }
+
+        .add-btn {
+            background: var(--soft-white); padding: 8px 18px; border-radius: 4px;
+            font-weight: 700; font-size: 13px; cursor: pointer; transition: 0.3s;
+            border: 1px solid var(--border-gold); color: var(--royal-brown);
+        }
+        .add-btn:hover { background: var(--royal-brown); color: var(--royal-gold); border-color: var(--royal-brown); }
+
+        /* --- الفوتر --- */
+        footer {
+            background: var(--royal-brown); color: white; padding: 40px 5%; text-align: center;
+        }
+        .footer-logo { font-family: 'Playfair Display', serif; font-size: 24px; color: #fff; margin-bottom: 10px; }
+        .footer-logo span { color: var(--royal-gold); }
+
+        /* التوست (Toast) */
+        #toast {
+            position: fixed; bottom: 30px; left: 30px;
+            background: var(--royal-brown); color: white;
+            padding: 15px 30px; border-radius: 5px; display: none; z-index: 2000;
+            border-right: 4px solid var(--royal-gold); font-weight: bold;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="promo-bar">تشكيلة الموسم الجديد متوفرة الآن | شحن مجاني للطلبات فوق 300 ريال</div>
+
+    <header>
+        <a href="index.html" class="logo">ROYAL<span>DATES</span></a>
+        <nav class="nav-links">
+            <a href="index.html">الرئيسية</a>
+            <a href="shop.html" class="active">المتجر</a>
+            <a href="#">من نحن</a>
+            <a href="#contact">تواصل معنا</a>
+        </nav>
+        <div class="header-actions">
+            <div class="cart-icon" onclick="location.href='cart.html'">
+                <i class="fa-solid fa-bag-shopping"></i>
+                <span class="cart-count" id="cart-counter">0</span>
+            </div>
+        </div>
+    </header>
+
+    <div class="shop-container">
+
+        <div class="category-section">
+            <div class="category-title"><span>تمور المدينة المنورة</span></div>
+            <div class="products-grid">
+                
+                <div class="item-card">
+                    <span class="badge">الأكثر طلباً</span>
+                    <div class="item-image">
+                        <img src="https://images.unsplash.com/photo-1596434451733-40615dfcf20b?w=600" alt="عجوة المدينة">
+                    </div>
+                    <div class="item-content">
+                        <a href="product-details.html" class="item-title">عجوة المدينة المنورة الملكية - VIP</a>
+                        <div class="item-footer">
+                            <div class="item-price">120<span>ر.س</span></div>
+                            <div class="add-btn" onclick="addToCart('عجوة المدينة')">أضف للسلة</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="item-card">
+                    <div class="item-image">
+                        <img src="https://images.unsplash.com/photo-1604908177433-4f9a76d8b671?w=600" alt="عنبرة">
+                    </div>
+                    <div class="item-content">
+                        <a href="product-details.html" class="item-title">عنبرة المدينة (حجم جامبو)</a>
+                        <div class="item-footer">
+                            <div class="item-price">150<span>ر.س</span></div>
+                            <div class="add-btn" onclick="addToCart('عنبرة المدينة')">أضف للسلة</div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="category-section">
+            <div class="category-title"><span>تمور القصيم الفاخرة</span></div>
+            <div class="products-grid">
+                
+                <div class="item-card">
+                    <div class="item-image">
+                        <img src="https://images.unsplash.com/photo-1626015502738-92f9d659779f?w=600" alt="سكري مفتل">
+                    </div>
+                    <div class="item-content">
+                        <a href="product-details.html" class="item-title">سكري القصيم مفتل ملكي</a>
+                        <div class="item-footer">
+                            <div class="item-price">85<span>ر.س</span></div>
+                            <div class="add-btn" onclick="addToCart('سكري مفتل')">أضف للسلة</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="item-card">
+                    <div class="item-image">
+                        <img src="https://images.unsplash.com/photo-1587049352847-4d1a2936a2ce?w=600" alt="صقعي">
+                    </div>
+                    <div class="item-content">
+                        <a href="product-details.html" class="item-title">صقعي القصيم (درجة أولى)</a>
+                        <div class="item-footer">
+                            <div class="item-price">75<span>ر.س</span></div>
+                            <div class="add-btn" onclick="addToCart('صقعي القصيم')">أضف للسلة</div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="category-section">
+            <div class="category-title"><span>باقات الإهداء والنخبة</span></div>
+            <div class="products-grid">
+                
+                <div class="item-card">
+                    <span class="badge" style="background:#dc3545;">خصم حصري</span>
+                    <div class="item-image">
+                        <img src="https://images.unsplash.com/photo-1590080873974-9a3527a69624?w=600" alt="مجدول">
+                    </div>
+                    <div class="item-content">
+                        <a href="product-details.html" class="item-title">تمر مجدول فاخر (ملك التمور)</a>
+                        <div class="item-footer">
+                            <div class="item-price">110<span>ر.س</span></div>
+                            <div class="add-btn" onclick="addToCart('مجدول فاخر')">أضف للسلة</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="item-card">
+                    <span class="badge">إصدار خاص</span>
+                    <div class="item-image">
+                        <img src="https://images.unsplash.com/photo-1544816155-12df9643f363?w=600" alt="صندوق النخبة">
+                    </div>
+                    <div class="item-content">
+                        <a href="product-details.html" class="item-title">صندوق الإهداء الملكي (تشكيلة)</a>
+                        <div class="item-footer">
+                            <div class="item-price">350<span>ر.س</span></div>
+                            <div class="add-btn" onclick="addToCart('صندوق النخبة')">أضف للسلة</div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <div id="toast"><i class="fa-solid fa-check-circle" style="color: var(--royal-gold); margin-left: 8px;"></i> تمت الإضافة للسلة بنجاح!</div>
+
+    <footer>
+        <div class="footer-logo">ROYAL<span>DATES</span></div>
+        <p style="opacity: 0.7; font-size: 14px; margin-top: 10px;">فخامة التراث السعودي بين يديك.</p>
+    </footer>
+
+    <script>
+        let cartCount = 0;
+        function addToCart(name) {
+            cartCount++;
+            document.getElementById('cart-counter').innerText = cartCount;
+            const toast = document.getElementById('toast');
+            toast.style.display = 'block';
+            setTimeout(() => { toast.style.display = 'none'; }, 2500);
+        }
+    </script>
+
+</body>
+</html>

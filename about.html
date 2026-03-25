@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>قصتنا | تمور النخبة - أصالة وجودة</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary: #3B2412;
+            --gold: #D4AF37;
+            --soft-bg: #F9F6F2;
+            --white: #ffffff;
+            --text-muted: #666;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Tajawal', sans-serif; background: var(--white); color: var(--primary); line-height: 1.8; }
+
+        /* 1. Hero Section - واقعي */
+        .about-hero {
+            height: 60vh;
+            background: linear-gradient(rgba(59, 36, 18, 0.6), rgba(59, 36, 18, 0.6)), 
+                        url('https://images.unsplash.com/photo-1501333190101-38933e08f5d0?auto=format&fit=crop&w=1920&q=80');
+            background-size: cover; background-position: center;
+            display: flex; align-items: center; justify-content: center; text-align: center; color: var(--white);
+        }
+        .about-hero h1 { font-size: clamp(30px, 5vw, 50px); margin-bottom: 15px; }
+
+        /* 2. Storytelling Section */
+        .section-padding { padding: 80px 10%; }
+        .story-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; }
+        .story-text h2 { color: var(--gold); margin-bottom: 20px; font-size: 32px; }
+        .story-img img { width: 100%; border-radius: 20px; box-shadow: 20px 20px 0 var(--soft-bg); }
+
+        /* 10. Trust Metrics (Counters) */
+        .stats-bar { background: var(--primary); color: var(--gold); display: flex; justify-content: space-around; padding: 60px 5%; text-align: center; }
+        .stat-item h3 { font-size: 40px; margin-bottom: 5px; }
+
+        /* 11. Contact Section */
+        .contact-container { display: grid; grid-template-columns: 1fr 1.5fr; gap: 40px; margin-top: 50px; }
+        .contact-info { background: var(--soft-bg); padding: 40px; border-radius: 15px; }
+        .info-card { display: flex; gap: 15px; margin-bottom: 25px; align-items: flex-start; }
+        .info-card i { font-size: 20px; color: var(--gold); background: #fff; padding: 12px; border-radius: 10px; }
+        
+        .contact-form { background: #fff; padding: 40px; border: 1px solid #eee; border-radius: 15px; }
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; margin-bottom: 8px; font-weight: bold; }
+        .form-group input, .form-group textarea { 
+            width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; transition: 0.3s;
+            font-family: 'Tajawal';
+        }
+        .form-group input:focus { border-color: var(--gold); }
+        .btn-send { background: var(--gold); color: #fff; border: none; padding: 15px 40px; border-radius: 8px; cursor: pointer; font-weight: bold; width: 100%; }
+
+        /* 12. Map Placeholder */
+        .map-box { height: 350px; background: #eee; border-radius: 15px; margin-top: 50px; overflow: hidden; }
+
+        /* Mobile Adjustments */
+        @media (max-width: 850px) {
+            .story-grid, .contact-container { grid-template-columns: 1fr; }
+            .stats-bar { flex-wrap: wrap; gap: 30px; }
+            .stat-item { flex: 1 1 40%; }
+        }
+    </style>
+</head>
+<body>
+
+    <section class="about-hero">
+        <div data-aos="fade-up">
+            <h1>من قلب مزارعنا.. إليكم</h1>
+            <p>نقدم أجود التمور السعودية بشغف وخبرة توارثتها الأجيال</p>
+        </div>
+    </section>
+
+    <section class="section-padding">
+        <div class="story-grid">
+            <div class="story-text" data-aos="fade-left">
+                <h2>حكاية بدأت من النخلة</h2>
+                <p>لم يكن مشروع "تمور النخبة" مجرد تجارة، بل كان شغفاً بدأ منذ أكثر من 20 عاماً في مزارع المدينة المنورة والقصيم. والدي وجدي كانوا يعلموننا أن النخلة ليست مجرد شجرة، بل هي رمز للكرم والأصالة.</p>
+                <br>
+                <p>قررنا في عام 2021 أن ننقل هذا التراث إلى كل بيت سعودي وخليجي، مع الحفاظ على الطرق الطبيعية في الحصاد والتغليف الفاخر الذي يليق بمكانة هذه الثمرة المباركة.</p>
+                <br>
+                <div style="display: flex; gap: 20px; color: var(--gold); font-weight: bold;">
+                    <span>✓ زراعة طبيعية</span>
+                    <span>✓ جودة مخبرية</span>
+                    <span>✓ تغليف معقم</span>
+                </div>
+            </div>
+            <div class="story-img" data-aos="fade-right">
+                <img src="https://images.unsplash.com/photo-1596434451733-40615dfcf20b?auto=format&fit=crop&w=600&q=80" alt="مزارعنا">
+            </div>
+        </div>
+    </section>
+
+    <section class="stats-bar">
+        <div class="stat-item" data-aos="zoom-in">
+            <h3>+10K</h3>
+            <p>عميل يثق بنا</p>
+        </div>
+        <div class="stat-item" data-aos="zoom-in" data-aos-delay="100">
+            <h3>50</h3>
+            <p>نوع من التمور الفاخرة</p>
+        </div>
+        <div class="stat-item" data-aos="zoom-in" data-aos-delay="200">
+            <h3>100%</h3>
+            <p>منتج سعودي أصيل</p>
+        </div>
+    </section>
+
+    <section class="section-padding" style="background: #fff;">
+        <h2 style="text-align: center; margin-bottom: 50px; color: var(--primary);">تواصل معنا مباشرة</h2>
+        
+        <div class="contact-container">
+            <div class="contact-info" data-aos="fade-up">
+                <h3>معلومات الاتصال</h3>
+                <p style="color: var(--text-muted); margin-bottom: 30px;">يسعدنا دائماً سماع صوتكم أو الرد على استفساراتكم.</p>
+                
+                <div class="info-card">
+                    <i class="fa-brands fa-whatsapp"></i>
+                    <div>
+                        <strong>واتساب المبيعات</strong>
+                        <p>+966 500 000 000</p>
+                    </div>
+                </div>
+                
+                <div class="info-card">
+                    <i class="fa-solid fa-envelope"></i>
+                    <div>
+                        <strong>البريد الإلكتروني</strong>
+                        <p>info@royal-dates.sa</p>
+                    </div>
+                </div>
+
+                <div class="info-card">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <div>
+                        <strong>مقرنا الرئيسي</strong>
+                        <p>المملكة العربية السعودية، الرياض، حي النخيل</p>
+                    </div>
+                </div>
+
+                <div style="margin-top: 30px;">
+                    <h4>تابعونا على:</h4>
+                    <div style="display: flex; gap: 15px; font-size: 24px; margin-top: 15px;">
+                        <i class="fa-brands fa-instagram" style="color: #E1306C; cursor: pointer;"></i>
+                        <i class="fa-brands fa-x-twitter" style="color: #000; cursor: pointer;"></i>
+                        <i class="fa-brands fa-tiktok" style="color: #000; cursor: pointer;"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="contact-form" data-aos="fade-up" data-aos-delay="100">
+                <form>
+                    <div class="form-group">
+                        <label>الاسم الكامل</label>
+                        <input type="text" placeholder="أدخل اسمك هنا">
+                    </div>
+                    <div class="form-group">
+                        <label>البريد الإلكتروني</label>
+                        <input type="email" placeholder="example@mail.com">
+                    </div>
+                    <div class="form-group">
+                        <label>الموضوع</label>
+                        <select style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; font-family: 'Tajawal';">
+                            <option>استفسار عام</option>
+                            <option>طلب عرض سعر (شركات)</option>
+                            <option>مشكلة في الشحن</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>رسالتك</label>
+                        <textarea rows="5" placeholder="اكتب تفاصيل استفسارك..."></textarea>
+                    </div>
+                    <button type="submit" class="btn-send">إرسال الرسالة</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="map-box" data-aos="zoom-in">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3624.4735391673893!2d46.6666!3d24.7136!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjTCsDQyJzQ5LjAiTiA0NsKwNDAnMDAuMCJF!5e0!3m2!1sar!2ssa!4v1614512345678!5m2!1sar!2ssa" 
+                width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+    </section>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
+</body>
+</html>

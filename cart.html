@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>سلة المشتريات | تمور النخبة</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;900&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --royal-brown: #2C1A0D;
+            --royal-gold: #D4AF37;
+            --soft-white: #FDFBF7;
+            --border-gold: #E0C987;
+            --text-gray: #666;
+            --transition: all 0.3s ease;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Tajawal', sans-serif; 
+            background-color: var(--soft-white); 
+            color: var(--royal-brown);
+            direction: rtl;
+        }
+
+        /* --- الهيدر (نفس التنسيق الموحد) --- */
+        .promo-bar {
+            background: var(--royal-brown); color: var(--royal-gold);
+            text-align: center; padding: 10px 0; font-size: 13px; font-weight: 600;
+            position: fixed; top: 0; width: 100%; z-index: 1001;
+            border-bottom: 1px solid var(--royal-gold);
+        }
+
+        header {
+            position: fixed; top: 38px; width: 100%; z-index: 1000;
+            background: rgba(255, 255, 255, 0.98); backdrop-filter: blur(15px);
+            padding: 15px 5%; display: flex; justify-content: space-between; align-items: center;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        .logo { font-family: 'Playfair Display', serif; font-size: 26px; font-weight: 900; color: var(--royal-brown); text-decoration: none; }
+        .logo span { color: var(--royal-gold); }
+
+        .nav-links { display: flex; gap: 30px; }
+        .nav-links a { text-decoration: none; font-weight: 700; color: var(--royal-brown); transition: var(--transition); }
+        .nav-links a:hover { color: var(--royal-gold); }
+
+        /* --- حاوية السلة --- */
+        .cart-page { max-width: 1200px; margin: 140px auto 80px; padding: 0 5%; }
+        
+        .page-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 32px;
+            font-weight: 900;
+            margin-bottom: 40px;
+            text-align: right;
+            border-bottom: 2px solid var(--border-gold);
+            padding-bottom: 15px;
+            display: inline-block;
+        }
+
+        .cart-layout {
+            display: flex;
+            gap: 40px;
+            align-items: flex-start;
+        }
+
+        /* 1. قائمة المنتجات في السلة */
+        .cart-items-section {
+            flex: 2;
+            background: white;
+            border: 1px solid var(--border-gold);
+            border-radius: 4px;
+            padding: 20px;
+        }
+
+        .cart-item {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding: 25px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .cart-item:last-child { border-bottom: none; padding-bottom: 0; }
+
+        .item-img {
+            width: 110px; height: 110px;
+            border: 1px solid var(--border-gold);
+            padding: 5px;
+            background: var(--soft-white);
+        }
+        .item-img img { width: 100%; height: 100%; object-fit: cover; }
+
+        .item-details { flex-grow: 1; }
+        .item-name { font-size: 18px; font-weight: 800; color: var(--royal-brown); margin-bottom: 5px; display: block; }
+        .item-category { font-size: 13px; color: var(--royal-gold); font-weight: bold; }
+
+        .item-price-unit { font-size: 16px; font-weight: 700; margin-top: 10px; color: var(--text-gray); }
+
+        /* أزرار التحكم بالكمية */
+        .qty-control {
+            display: flex; align-items: center;
+            border: 1px solid var(--border-gold);
+            border-radius: 4px; overflow: hidden;
+            width: fit-content; margin-top: 15px;
+        }
+        .qty-btn {
+            background: var(--soft-white); border: none; padding: 8px 15px;
+            font-size: 16px; cursor: pointer; color: var(--royal-brown); transition: 0.2s;
+        }
+        .qty-btn:hover { background: var(--royal-gold); color: white; }
+        .qty-input {
+            width: 40px; text-align: center; border: none; font-weight: bold;
+            font-size: 16px; color: var(--royal-brown); outline: none; background: white; pointer-events: none;
+        }
+
+        .item-total {
+            font-size: 20px; font-weight: 900; color: var(--royal-brown);
+            text-align: left; min-width: 100px;
+        }
+
+        .remove-btn {
+            background: none; border: none; color: #dc3545; font-size: 18px;
+            cursor: pointer; transition: var(--transition); margin-right: 15px;
+        }
+        .remove-btn:hover { color: #a71d2a; transform: scale(1.1); }
+
+        /* 2. ملخص الطلب (الفاتورة) */
+        .order-summary {
+            flex: 1;
+            background: white;
+            border: 2px solid var(--border-gold);
+            padding: 30px;
+            border-radius: 4px;
+            position: sticky;
+            top: 100px; /* يبقى ثابت عند النزول بالصفحة */
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+
+        .summary-title {
+            font-size: 22px; font-weight: 900; margin-bottom: 25px;
+            border-bottom: 1px solid #eee; padding-bottom: 15px;
+        }
+
+        .summary-row {
+            display: flex; justify-content: space-between;
+            margin-bottom: 15px; font-size: 16px; font-weight: 600; color: var(--text-gray);
+        }
+
+        .summary-total {
+            display: flex; justify-content: space-between;
+            margin-top: 25px; padding-top: 20px;
+            border-top: 2px solid var(--border-gold);
+            font-size: 24px; font-weight: 900; color: var(--royal-brown);
+        }
+
+        .checkout-btn {
+            display: block; width: 100%;
+            background: var(--royal-brown); color: var(--royal-gold);
+            text-align: center; padding: 15px; font-size: 18px; font-weight: 800;
+            border: 1px solid var(--royal-brown); border-radius: 4px;
+            margin-top: 30px; cursor: pointer; transition: var(--transition); text-decoration: none;
+        }
+        .checkout-btn:hover { background: var(--royal-gold); color: white; border-color: var(--royal-gold); }
+
+        .continue-shopping {
+            display: block; text-align: center; margin-top: 15px;
+            font-size: 14px; font-weight: bold; color: var(--text-gray); text-decoration: none;
+        }
+        .continue-shopping:hover { color: var(--royal-brown); text-decoration: underline; }
+
+        /* --- التجاوب (Responsive) --- */
+        @media (max-width: 900px) {
+            .cart-layout { flex-direction: column; }
+            .order-summary { width: 100%; position: static; }
+        }
+        @media (max-width: 600px) {
+            .cart-item { flex-direction: column; align-items: flex-start; position: relative; }
+            .item-total { margin-top: 15px; }
+            .remove-btn { position: absolute; top: 20px; left: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="promo-bar">خطوة واحدة تفصلك عن الفخامة</div>
+    <header>
+        <a href="index.html" class="logo">ROYAL<span>DATES</span></a>
+        <nav class="nav-links">
+            <a href="index.html">الرئيسية</a>
+            <a href="shop.html">المتجر</a>
+        </nav>
+    </header>
+
+    <div class="cart-page">
+        <h1 class="page-title">سلة المشتريات</h1>
+
+        <div class="cart-layout">
+            
+            <div class="cart-items-section">
+                
+                <div class="cart-item">
+                    <div class="item-img">
+                        <img src="https://images.unsplash.com/photo-1596434451733-40615dfcf20b?w=200" alt="عجوة المدينة">
+                    </div>
+                    <div class="item-details">
+                        <span class="item-category">تمور المدينة</span>
+                        <div class="item-name">عجوة المدينة المنورة الملكية - VIP</div>
+                        <div class="item-price-unit">سعر الوحدة: 120 ر.س</div>
+                        
+                        <div class="qty-control">
+                            <button class="qty-btn" onclick="updateQty(this, 1)">+</button>
+                            <input type="text" class="qty-input" value="2" readonly>
+                            <button class="qty-btn" onclick="updateQty(this, -1)">-</button>
+                        </div>
+                    </div>
+                    <div class="item-total" data-price="120">240 ر.س</div>
+                    <button class="remove-btn" title="حذف المنتج"><i class="fa-solid fa-trash-can"></i></button>
+                </div>
+
+                <div class="cart-item">
+                    <div class="item-img">
+                        <img src="https://images.unsplash.com/photo-1626015502738-92f9d659779f?w=200" alt="سكري مفتل">
+                    </div>
+                    <div class="item-details">
+                        <span class="item-category">تمور القصيم</span>
+                        <div class="item-name">سكري القصيم مفتل ملكي</div>
+                        <div class="item-price-unit">سعر الوحدة: 85 ر.س</div>
+                        
+                        <div class="qty-control">
+                            <button class="qty-btn" onclick="updateQty(this, 1)">+</button>
+                            <input type="text" class="qty-input" value="1" readonly>
+                            <button class="qty-btn" onclick="updateQty(this, -1)">-</button>
+                        </div>
+                    </div>
+                    <div class="item-total" data-price="85">85 ر.س</div>
+                    <button class="remove-btn" title="حذف المنتج"><i class="fa-solid fa-trash-can"></i></button>
+                </div>
+
+            </div>
+
+            <div class="order-summary">
+                <div class="summary-title">ملخص الطلب</div>
+                
+                <div class="summary-row">
+                    <span>المجموع الفرعي</span>
+                    <span id="subtotal">325 ر.س</span>
+                </div>
+                <div class="summary-row">
+                    <span>رسوم الشحن</span>
+                    <span style="color: #28a745;">مجاني</span>
+                </div>
+                <div class="summary-row" style="font-size: 13px;">
+                    <span>الضريبة (15% مشمولة)</span>
+                    <span id="tax">48 ر.س</span>
+                </div>
+
+                <div class="summary-total">
+                    <span>الإجمالي</span>
+                    <span id="grandTotal">325 ر.س</span>
+                </div>
+
+                <a href="#" class="checkout-btn">إتمام الطلب بأمان <i class="fa-solid fa-lock" style="margin-right: 8px; font-size: 14px;"></i></a>
+                <a href="shop.html" class="continue-shopping">أو العودة للتسوق</a>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        function updateQty(btn, change) {
+            const container = btn.parentElement;
+            const input = container.querySelector('.qty-input');
+            let currentVal = parseInt(input.value);
+            
+            // تحديث الكمية
+            let newVal = currentVal + change;
+            if (newVal < 1) newVal = 1; // لا يمكن أن تكون الكمية أقل من 1
+            input.value = newVal;
+
+            // تحديث سعر المنتج الإجمالي
+            const cartItem = container.closest('.cart-item');
+            const totalElement = cartItem.querySelector('.item-total');
+            const unitPrice = parseInt(totalElement.getAttribute('data-price'));
+            totalElement.innerText = (unitPrice * newVal) + ' ر.س';
+
+            // حساب المجموع الكلي للفاتورة
+            calculateGrandTotal();
+        }
+
+        function calculateGrandTotal() {
+            const allTotals = document.querySelectorAll('.item-total');
+            let grandTotal = 0;
+            
+            allTotals.forEach(item => {
+                grandTotal += parseInt(item.innerText.replace(' ر.س', ''));
+            });
+
+            document.getElementById('subtotal').innerText = grandTotal + ' ر.س';
+            document.getElementById('grandTotal').innerText = grandTotal + ' ر.س';
+            
+            // حساب ضريبة تقريبية
+            const tax = Math.round(grandTotal * 0.15);
+            document.getElementById('tax').innerText = tax + ' ر.س';
+        }
+    </script>
+
+</body>
+</html>

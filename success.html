@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>شكراً لثقتكم | تمور النخبة</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;900&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --royal-brown: #2C1A0D;
+            --royal-gold: #D4AF37;
+            --soft-white: #FDFBF7;
+            --border-gold: #E0C987;
+            --transition: all 0.4s ease;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Tajawal', sans-serif; 
+            background-color: var(--soft-white); 
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            direction: rtl;
+        }
+
+        .success-card {
+            background: white;
+            border: 2px solid var(--border-gold);
+            padding: 60px 40px;
+            text-align: center;
+            max-width: 600px;
+            width: 90%;
+            position: relative;
+            box-shadow: 0 20px 50px rgba(44, 26, 13, 0.1);
+        }
+
+        /* الإطار الداخلي الملكي */
+        .success-card::after {
+            content: '';
+            position: absolute;
+            inset: 10px;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            pointer-events: none;
+        }
+
+        .check-icon {
+            width: 100px;
+            height: 100px;
+            background: var(--royal-gold);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 50px;
+            margin: 0 auto 30px;
+            animation: scaleUp 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        @keyframes scaleUp {
+            from { transform: scale(0); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 32px;
+            color: var(--royal-brown);
+            margin-bottom: 15px;
+        }
+
+        p {
+            color: #666;
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        .order-number {
+            background: var(--soft-white);
+            border: 1px dashed var(--royal-gold);
+            padding: 15px;
+            display: inline-block;
+            font-weight: 900;
+            color: var(--royal-brown);
+            font-size: 20px;
+            margin-bottom: 40px;
+        }
+
+        .action-btns {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .btn {
+            padding: 15px 30px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: var(--transition);
+            border-radius: 4px;
+        }
+
+        .btn-primary {
+            background: var(--royal-brown);
+            color: var(--royal-gold);
+            border: 1px solid var(--royal-brown);
+        }
+
+        .btn-primary:hover {
+            background: var(--royal-gold);
+            color: white;
+            border-color: var(--royal-gold);
+        }
+
+        .btn-outline {
+            border: 1px solid var(--border-gold);
+            color: var(--royal-brown);
+        }
+
+        .btn-outline:hover {
+            background: #fdf2d0;
+        }
+
+        .footer-note {
+            margin-top: 40px;
+            font-size: 13px;
+            color: #999;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="success-card">
+        <div class="check-icon">
+            <i class="fa-solid fa-check"></i>
+        </div>
+        
+        <h1>تم استلام طلبك بنجاح!</h1>
+        <p>شكراً لثقتك بتمور النخبة. طلبك الآن قيد التجهيز بعناية فائقة وسنقوم بإشعارك عند خروجه للشحن.</p>
+        
+        <div class="order-number">
+            رقم الطلب: #RN-88294
+        </div>
+
+        <div class="action-btns">
+            <a href="index.html" class="btn btn-primary">العودة للرئيسية</a>
+            <a href="shop.html" class="btn btn-outline">مواصلة التسوق</a>
+        </div>
+
+        <div class="footer-note">
+            تم إرسال تفاصيل الفاتورة إلى بريدك الإلكتروني المسجل.
+        </div>
+    </div>
+
+</body>
+</html>

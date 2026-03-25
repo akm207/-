@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إتمام الشراء | تمور النخبة</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;900&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --royal-brown: #2C1A0D;
+            --royal-gold: #D4AF37;
+            --soft-white: #FDFBF7;
+            --border-gold: #E0C987;
+            --error: #dc3545;
+            --transition: all 0.3s ease;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Tajawal', sans-serif; 
+            background-color: var(--soft-white); 
+            color: var(--royal-brown);
+            direction: rtl;
+        }
+
+        /* الهيدر المبسط (لتقليل التشتيت أثناء الدفع) */
+        header {
+            padding: 20px 5%;
+            background: white;
+            border-bottom: 1px solid var(--border-gold);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .logo { font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 900; text-decoration: none; color: var(--royal-brown); }
+        .logo span { color: var(--royal-gold); }
+
+        .checkout-container {
+            max-width: 1100px;
+            margin: 50px auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 1.5fr 1fr;
+            gap: 40px;
+        }
+
+        .section-box {
+            background: white;
+            border: 1px solid var(--border-gold);
+            padding: 30px;
+            margin-bottom: 30px;
+            border-radius: 4px;
+        }
+
+        .section-title {
+            font-size: 20px;
+            font-weight: 800;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--royal-brown);
+        }
+
+        .section-title i { color: var(--royal-gold); }
+
+        /* تنسيق المدخلات (Inputs) */
+        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .full-width { grid-column: span 2; }
+
+        .input-group { margin-bottom: 20px; }
+        .input-group label { display: block; font-weight: 700; font-size: 14px; margin-bottom: 8px; }
+        .input-box {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: 'Tajawal';
+            transition: var(--transition);
+        }
+        .input-box:focus { border-color: var(--royal-gold); outline: none; box-shadow: 0 0 5px rgba(212, 175, 55, 0.2); }
+
+        /* خيارات الدفع */
+        .payment-methods { display: flex; flex-direction: column; gap: 15px; }
+        .method-card {
+            border: 1px solid #eee;
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            cursor: pointer;
+            transition: var(--transition);
+            border-radius: 4px;
+        }
+        .method-card:hover { border-color: var(--royal-gold); background: #fffcf5; }
+        .method-card.active { border: 2px solid var(--royal-gold); background: #fffcf5; }
+        .method-card input { transform: scale(1.2); accent-color: var(--royal-gold); }
+        .method-card i { font-size: 24px; width: 30px; text-align: center; }
+
+        /* ملصق الطلب (الجانب الأيسر) */
+        .order-review {
+            background: var(--royal-brown);
+            color: white;
+            padding: 30px;
+            border-radius: 4px;
+            position: sticky;
+            top: 20px;
+        }
+        .order-review h3 { color: var(--royal-gold); margin-bottom: 20px; font-size: 22px; }
+        
+        .review-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            font-size: 15px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding-bottom: 10px;
+        }
+
+        .bill-row { display: flex; justify-content: space-between; margin-bottom: 10px; font-weight: 500; }
+        .bill-total {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid var(--royal-gold);
+            font-size: 24px;
+            font-weight: 900;
+            color: var(--royal-gold);
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .pay-now-btn {
+            width: 100%;
+            background: var(--royal-gold);
+            color: var(--royal-brown);
+            border: none;
+            padding: 18px;
+            font-size: 18px;
+            font-weight: 900;
+            cursor: pointer;
+            margin-top: 30px;
+            border-radius: 4px;
+            transition: var(--transition);
+        }
+        .pay-now-btn:hover { background: #b8932d; transform: translateY(-3px); }
+
+        .secure-badge {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 12px;
+            opacity: 0.7;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        @media (max-width: 900px) {
+            .checkout-container { grid-template-columns: 1fr; }
+            .form-grid { grid-template-columns: 1fr; }
+            .full-width { grid-column: span 1; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="index.html" class="logo">ROYAL<span>DATES</span></a>
+    </header>
+
+    <div class="checkout-container">
+        
+        <div class="checkout-form">
+            
+            <div class="section-box">
+                <div class="section-title"><i class="fa-solid fa-truck"></i> معلومات الشحن</div>
+                <div class="form-grid">
+                    <div class="input-group">
+                        <label>الاسم الأول</label>
+                        <input type="text" class="input-box" placeholder="مثال: محمد">
+                    </div>
+                    <div class="input-group">
+                        <label>اسم العائلة</label>
+                        <input type="text" class="input-box" placeholder="العتيبي">
+                    </div>
+                    <div class="input-group full-width">
+                        <label>رقم الجوال</label>
+                        <input type="tel" class="input-box" placeholder="05xxxxxxxx">
+                    </div>
+                    <div class="input-group full-width">
+                        <label>العنوان بالتفصيل (المدينة، الحي، الشارع)</label>
+                        <input type="text" class="input-box" placeholder="الرياض، حي النرجس، شارع الملك فهد">
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-box">
+                <div class="section-title"><i class="fa-solid fa-credit-card"></i> طريقة الدفع</div>
+                <div class="payment-methods">
+                    
+                    <label class="method-card active">
+                        <input type="radio" name="payment" checked>
+                        <i class="fa-brands fa-cc-visa"></i>
+                        <span>بطاقة مدى / فيزا (دفع آمن)</span>
+                    </label>
+
+                    <label class="method-card">
+                        <input type="radio" name="payment">
+                        <i class="fa-brands fa-apple-pay"></i>
+                        <span>Apple Pay</span>
+                    </label>
+
+                    <label class="method-card">
+                        <input type="radio" name="payment">
+                        <i class="fa-solid fa-money-bill-transfer"></i>
+                        <span>الدفع عند الاستلام</span>
+                    </label>
+
+                </div>
+            </div>
+
+        </div>
+
+        <aside class="order-review">
+            <h3>ملخص طلبك</h3>
+            
+            <div class="review-item">
+                <span>عجوة المدينة (2 كيلو)</span>
+                <span>240 ر.س</span>
+            </div>
+            <div class="review-item">
+                <span>سكري مفتل (1 كيلو)</span>
+                <span>85 ر.س</span>
+            </div>
+
+            <div style="margin-top: 30px;">
+                <div class="bill-row">
+                    <span>المجموع الفرعي:</span>
+                    <span>325 ر.س</span>
+                </div>
+                <div class="bill-row">
+                    <span>الشحن:</span>
+                    <span style="color: var(--royal-gold);">مجاني</span>
+                </div>
+                <div class="bill-total">
+                    <span>الإجمالي:</span>
+                    <span>325 ر.س</span>
+                </div>
+            </div>
+
+            <button class="pay-now-btn" onclick="completeOrder()">تأكيد الدفع والطلب</button>
+
+            <div class="secure-badge">
+                <i class="fa-solid fa-shield-halved"></i>
+                بياناتك مشفرة وآمنة تماماً وفق معايير PCI DSS
+            </div>
+        </aside>
+
+    </div>
+
+    <script>
+        // تغيير استايل الكرت المختار في الدفع
+        const methods = document.querySelectorAll('.method-card');
+        methods.forEach(card => {
+            card.addEventListener('click', () => {
+                methods.forEach(c => c.classList.remove('active'));
+                card.classList.add('active');
+            });
+        });
+
+        function completeOrder() {
+            alert('تم استلام طلبك بنجاح! شكراً لثقتك بتمور النخبة.');
+            window.location.href = 'index.html';
+        }
+    </script>
+
+</body>
+</html>

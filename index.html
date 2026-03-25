@@ -1,305 +1,899 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Global Beanery · منيو بيك مون العالمي</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Playfair+Display:wght@400;600;800&display=swap" rel="stylesheet">
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Cairo', 'Segoe UI', sans-serif;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="تمور النخبة - أفخم أنواع التمور السعودية، من المزرعة إلى باب منزلك بتغليف فاخر.">
+    <title>تمور النخبة | فخامة التراث السعودي</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&family=Playfair+Display:ital,wght@1,600;1,700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
 
-    body {
-      background-color: #fdfbf7;
-      color: #2e2b27;
-      line-height: 1.5;
-    }
+    <style>
+        /* ==========================================
+           1. المتغيرات والإعدادات العامة (Variables & Reset)
+           ========================================== */
+        :root {
+            --primary-color: #3B2412;
+            --primary-light: #5a3a21;
+            --gold-color: #D4AF37;
+            --gold-hover: #b8952d;
+            --bg-color: #FDFBF7;
+            --text-dark: #222;
+            --text-light: #777;
+            --white: #ffffff;
+            --border-color: #eaeaea;
+            --transition-fast: all 0.3s ease;
+            --transition-slow: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            --shadow-sm: 0 5px 15px rgba(0,0,0,0.05);
+            --shadow-md: 0 10px 30px rgba(0,0,0,0.1);
+            --shadow-lg: 0 20px 40px rgba(59, 36, 18, 0.15);
+        }
 
-    /* شريط علوي ثابت */
-    .navbar {
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      background-color: #f2eee9;
-      border-bottom: 2px solid #c9a13b;
-      padding: 0.75rem 1.5rem;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      align-items: center;
-      gap: 0.5rem 1rem;
-      box-shadow: 0 6px 14px rgba(0,0,0,0.03);
-    }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            outline: none;
+            -webkit-tap-highlight-color: transparent;
+        }
 
-    .nav-btn {
-      background: transparent;
-      border: 1.8px solid #c9a13b;
-      color: #5e4b3a;
-      padding: 0.4rem 1.3rem;
-      border-radius: 50px;
-      font-weight: 600;
-      font-size: 0.95rem;
-      cursor: pointer;
-      transition: all 0.2s;
-      background-color: rgba(255,255,255,0.6);
-      backdrop-filter: blur(2px);
-    }
+        html {
+            scroll-behavior: smooth;
+        }
 
-    .nav-btn:hover, .nav-btn.active {
-      background-color: #c9a13b;
-      color: #ffffff;
-      box-shadow: 0 4px 12px rgba(201, 161, 59, 0.3);
-    }
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--primary-color);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
 
-    /* العنوان والزخارف */
-    .hero-title {
-      text-align: center;
-      padding: 2rem 1rem 0.5rem;
-    }
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 700;
+            line-height: 1.3;
+        }
 
-    .hero-title h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: 3.2rem;
-      font-weight: 800;
-      color: #3f352c;
-      letter-spacing: 2px;
-      margin-bottom: 0.2rem;
-    }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
 
-    .hero-title .tagline {
-      font-size: 1.2rem;
-      color: #856f4a;
-      background: #f0e7da;
-      display: inline-block;
-      padding: 0.2rem 2.2rem;
-      border-radius: 40px;
-      font-style: italic;
-      border: 1px solid #d4b06a;
-    }
+        ul {
+            list-style: none;
+        }
 
-    .divider {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.5rem;
-      margin: 0.8rem 0;
-      color: #c9a13b;
-      font-size: 2rem;
-    }
+        /* ==========================================
+           2. شاشة التحميل (Preloader)
+           ========================================== */
+        .preloader {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: var(--primary-color);
+            display: flex; flex-direction: column;
+            align-items: center; justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+        .preloader.fade-out {
+            opacity: 0;
+            visibility: hidden;
+        }
+        .loader-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 40px;
+            color: var(--gold-color);
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+            animation: pulse 1.5s infinite;
+        }
+        .loader-spinner {
+            width: 50px; height: 50px;
+            border: 3px solid rgba(212, 175, 55, 0.3);
+            border-top-color: var(--gold-color);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin { 100% { transform: rotate(360deg); } }
+        @keyframes pulse { 0% { opacity: 0.6; transform: scale(0.98); } 50% { opacity: 1; transform: scale(1.02); } 100% { opacity: 0.6; transform: scale(0.98); } }
 
-    /* أقسام المنتجات */
-    .menu-section {
-      max-width: 1300px;
-      margin: 2rem auto;
-      padding: 1rem 1.8rem;
-      scroll-margin-top: 80px;
-    }
+        /* ==========================================
+           3. شريط الإعلانات (Announcement Bar)
+           ========================================== */
+        .announcement-bar {
+            background-color: var(--primary-color);
+            color: var(--gold-color);
+            text-align: center;
+            padding: 10px 5%;
+            font-size: 14px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            position: relative;
+            z-index: 1001;
+        }
+        .announcement-bar span {
+            display: inline-block;
+            animation: slideUpFade 3s infinite;
+        }
+        @keyframes slideUpFade { 
+            0% { opacity: 0; transform: translateY(10px); } 
+            20% { opacity: 1; transform: translateY(0); } 
+            80% { opacity: 1; transform: translateY(0); } 
+            100% { opacity: 0; transform: translateY(-10px); } 
+        }
 
-    .section-title {
-      font-family: 'Playfair Display', serif;
-      font-size: 2.5rem;
-      font-weight: 700;
-      color: #3f352c;
-      border-right: 8px solid #c9a13b;
-      padding-right: 1rem;
-      margin-bottom: 2rem;
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-    }
+        /* ==========================================
+           4. الهيدر والقوائم (Header & Navigation)
+           ========================================== */
+        header {
+            position: fixed;
+            top: 40px; /* بعد شريط الإعلانات */
+            width: 100%;
+            padding: 20px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            transition: var(--transition-slow);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        header.scrolled {
+            top: 0;
+            background-color: var(--white);
+            padding: 15px 5%;
+            box-shadow: var(--shadow-md);
+            border-bottom: none;
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--white);
+            font-family: 'Playfair Display', serif;
+            transition: var(--transition-fast);
+        }
+        .logo span { color: var(--gold-color); }
+        header.scrolled .logo { color: var(--primary-color); }
 
-    .menu-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 2rem 1.5rem;
-    }
+        .nav-links {
+            display: flex;
+            gap: 35px;
+        }
+        .nav-links li { position: relative; }
+        .nav-links a {
+            color: var(--white);
+            font-weight: 500;
+            font-size: 16px;
+            transition: var(--transition-fast);
+            padding: 5px 0;
+        }
+        header.scrolled .nav-links a { color: var(--primary-color); }
+        
+        .nav-links a::after {
+            content: ''; position: absolute; bottom: 0; left: 0;
+            width: 0; height: 2px; background: var(--gold-color);
+            transition: var(--transition-fast);
+        }
+        .nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
+        .nav-links a:hover { color: var(--gold-color) !important; }
 
-    .menu-item {
-      background-color: #ffffff;
-      border-radius: 28px;
-      overflow: hidden;
-      box-shadow: 0 10px 20px rgba(0,0,0,0.05);
-      transition: all 0.3s ease;
-      text-align: center;
-      padding-bottom: 1.5rem;
-      border: 1px solid #eedbba;
-    }
+        .nav-actions {
+            display: flex;
+            gap: 25px;
+            align-items: center;
+        }
+        .icon-btn {
+            color: var(--white);
+            font-size: 20px;
+            background: none; border: none; cursor: pointer;
+            transition: var(--transition-fast);
+            position: relative;
+        }
+        header.scrolled .icon-btn { color: var(--primary-color); }
+        .icon-btn:hover { color: var(--gold-color); transform: translateY(-2px); }
+        
+        .cart-count {
+            position: absolute; top: -8px; right: -8px;
+            background: var(--gold-color); color: var(--white);
+            font-size: 11px; font-weight: bold;
+            width: 18px; height: 18px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+        }
 
-    .menu-item:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 15px 30px rgba(201, 161, 59, 0.2);
-    }
+        .menu-toggle {
+            display: none;
+            color: var(--white);
+            font-size: 24px;
+            cursor: pointer;
+        }
+        header.scrolled .menu-toggle { color: var(--primary-color); }
 
-    .menu-item img {
-      width: 100%;
-      aspect-ratio: 1 / 1;
-      object-fit: cover;
-      border-bottom: 3px solid #c9a13b;
-    }
+        /* ==========================================
+           5. قائمة الجوال الجانبية (Mobile Sidebar)
+           ========================================== */
+        .mobile-menu-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.6); z-index: 1001;
+            opacity: 0; visibility: hidden; transition: var(--transition-fast);
+        }
+        .mobile-menu-overlay.active { opacity: 1; visibility: visible; }
+        
+        .mobile-menu {
+            position: fixed; top: 0; right: -300px; width: 300px; height: 100vh;
+            background: var(--white); z-index: 1002;
+            padding: 30px 20px; box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+            transition: var(--transition-slow); display: flex; flex-direction: column;
+        }
+        .mobile-menu.active { right: 0; }
+        .close-menu {
+            align-self: flex-end; font-size: 24px; color: var(--primary-color); cursor: pointer; margin-bottom: 30px;
+        }
+        .mobile-nav-links { display: flex; flex-direction: column; gap: 20px; }
+        .mobile-nav-links a { font-size: 18px; color: var(--primary-color); font-weight: 500; display: block; padding-bottom: 10px; border-bottom: 1px solid var(--border-color); }
+        .mobile-nav-links a:hover { color: var(--gold-color); }
 
-    .item-name {
-      font-weight: 700;
-      font-size: 1.25rem;
-      margin: 1rem 0 0.5rem;
-      color: #3f352c;
-    }
+        /* ==========================================
+           6. الهيرو سكشن (Hero Slider)
+           ========================================== */
+        .hero-section {
+            height: 100vh;
+            width: 100%;
+            position: relative;
+        }
+        .swiper-slide {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            overflow: hidden;
+        }
+        .slide-bg {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background-size: cover; background-position: center;
+            z-index: 1; transform: scale(1); transition: transform 6s ease;
+        }
+        .swiper-slide-active .slide-bg { transform: scale(1.05); }
+        .slide-overlay {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.6), rgba(59, 36, 18, 0.4)); z-index: 2;
+        }
+        .slide-content {
+            position: relative; z-index: 3; color: var(--white);
+            max-width: 800px; padding: 0 20px;
+            opacity: 0; transform: translateY(30px); transition: all 1s ease 0.3s;
+        }
+        .swiper-slide-active .slide-content { opacity: 1; transform: translateY(0); }
+        
+        .slide-subtitle { color: var(--gold-color); font-size: 20px; font-weight: 500; margin-bottom: 15px; display: block; letter-spacing: 2px; }
+        .slide-title { font-size: clamp(35px, 6vw, 70px); font-family: 'Playfair Display', serif; line-height: 1.2; margin-bottom: 25px; }
+        .slide-text { font-size: clamp(16px, 2vw, 20px); opacity: 0.9; margin-bottom: 40px; }
 
-    .item-price {
-      color: #4a3f33;
-      font-weight: 800;
-      font-size: 1.2rem;
-      background: #f7eedb;
-      padding: 0.2rem 1.2rem;
-      border-radius: 40px;
-      border: 1px solid #c9a13b;
-    }
+        /* الأزرار العامة */
+        .btn-group { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; }
+        .btn {
+            padding: 15px 40px; border-radius: 5px; font-size: 16px; font-weight: 700;
+            cursor: pointer; transition: var(--transition-fast); display: inline-flex; align-items: center; gap: 10px; border: none;
+        }
+        .btn-gold { background: var(--gold-color); color: var(--white); box-shadow: 0 10px 20px rgba(212, 175, 55, 0.3); }
+        .btn-gold:hover { background: var(--gold-hover); transform: translateY(-3px); box-shadow: 0 15px 25px rgba(212, 175, 55, 0.4); }
+        .btn-outline { background: transparent; border: 2px solid var(--white); color: var(--white); }
+        .btn-outline:hover { background: var(--white); color: var(--primary-color); transform: translateY(-3px); }
 
-    /* المساعد بيك مون */
-    .pick-moon {
-      position: fixed;
-      bottom: 0;
-      left: 20px;
-      z-index: 100;
-      display: flex;
-      align-items: flex-end;
-      pointer-events: none;
-    }
+        /* ==========================================
+           7. شريط الثقة والمميزات (Trust Features)
+           ========================================== */
+        .features-bar {
+            background: var(--white);
+            padding: 40px 5%;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+            position: relative;
+            z-index: 10;
+            margin-top: -30px;
+            border-radius: 15px;
+            max-width: 1400px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .feature-item {
+            display: flex; align-items: center; gap: 20px;
+            padding: 15px; border-radius: 10px; transition: var(--transition-fast);
+        }
+        .feature-item:hover { background: var(--bg-color); transform: translateY(-5px); }
+        .feature-icon {
+            width: 60px; height: 60px; background: rgba(212, 175, 55, 0.1);
+            color: var(--gold-color); font-size: 24px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+        }
+        .feature-text h4 { font-size: 18px; margin-bottom: 5px; color: var(--primary-color); }
+        .feature-text p { font-size: 14px; color: var(--text-light); }
 
-    .moon-image {
-      width: 150px;
-      height: auto;
-      transition: all 0.5s ease;
-      filter: drop-shadow(0 5px 15px rgba(0,0,0,0.2));
-    }
+        /* ==========================================
+           8. الأقسام (Categories)
+           ========================================== */
+        .section-padding { padding: 100px 5%; }
+        .section-header { text-align: center; margin-bottom: 60px; }
+        .section-subtitle { color: var(--gold-color); font-weight: 700; font-size: 16px; display: block; margin-bottom: 10px; letter-spacing: 1px; }
+        .section-title { font-size: 36px; color: var(--primary-color); font-family: 'Playfair Display', serif; }
 
-    .speech-bubble {
-      background: #ffffff;
-      color: #3a2f27;
-      padding: 1rem;
-      border-radius: 20px 20px 20px 0px;
-      font-weight: 700;
-      max-width: 200px;
-      margin-bottom: 100px;
-      margin-left: -20px;
-      box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-      border: 2px solid #c9a13b;
-      position: relative;
-    }
+        .categories-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; max-width: 1400px; margin: 0 auto;
+        }
+        .cat-box {
+            position: relative; height: 450px; border-radius: 20px; overflow: hidden; cursor: pointer;
+        }
+        .cat-box img {
+            width: 100%; height: 100%; object-fit: cover; transition: var(--transition-slow);
+        }
+        .cat-overlay {
+            position: absolute; inset: 0; background: linear-gradient(to top, rgba(59, 36, 18, 0.9) 0%, rgba(0,0,0,0) 60%);
+            display: flex; flex-direction: column; justify-content: flex-end; padding: 40px 30px; transition: var(--transition-fast);
+        }
+        .cat-box:hover img { transform: scale(1.1); }
+        .cat-box:hover .cat-overlay { background: linear-gradient(to top, rgba(59, 36, 18, 0.95) 0%, rgba(59, 36, 18, 0.4) 100%); }
+        .cat-overlay h3 { color: var(--white); font-size: 28px; margin-bottom: 10px; transform: translateY(20px); transition: var(--transition-fast); }
+        .cat-overlay p { color: var(--gold-color); font-size: 16px; opacity: 0; transform: translateY(20px); transition: var(--transition-fast); }
+        .cat-box:hover .cat-overlay h3, .cat-box:hover .cat-overlay p { transform: translateY(0); opacity: 1; }
 
-    @media (max-width: 700px) {
-      .menu-grid { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
-      .hero-title h1 { font-size: 2.2rem; }
-      .moon-image { width: 100px; }
-      .speech-bubble { font-size: 0.8rem; margin-bottom: 60px; }
-    }
+        /* ==========================================
+           9. المنتجات المميزة (Featured Products)
+           ========================================== */
+        .products-area { background-color: var(--white); }
+        .products-slider { max-width: 1400px; margin: 0 auto; padding-bottom: 50px; }
+        .product-card {
+            background: var(--white); border: 1px solid var(--border-color); border-radius: 15px;
+            overflow: hidden; transition: var(--transition-fast); position: relative;
+        }
+        .product-card:hover { box-shadow: var(--shadow-lg); border-color: var(--gold-color); transform: translateY(-10px); }
+        .product-badge {
+            position: absolute; top: 15px; right: 15px; background: var(--primary-color); color: var(--gold-color);
+            padding: 5px 12px; font-size: 12px; font-weight: bold; border-radius: 4px; z-index: 2;
+        }
+        .product-img {
+            height: 280px; overflow: hidden; position: relative;
+        }
+        .product-img img { width: 100%; height: 100%; object-fit: cover; transition: var(--transition-slow); }
+        .product-card:hover .product-img img { transform: scale(1.1); }
+        
+        .product-actions {
+            position: absolute; bottom: -50px; left: 0; width: 100%;
+            display: flex; justify-content: center; gap: 10px; padding: 15px;
+            background: linear-gradient(to top, rgba(255,255,255,1), rgba(255,255,255,0));
+            transition: var(--transition-fast); z-index: 3;
+        }
+        .product-card:hover .product-actions { bottom: 0; }
+        .action-btn {
+            width: 45px; height: 45px; border-radius: 50%; background: var(--white);
+            color: var(--primary-color); border: none; box-shadow: var(--shadow-sm);
+            font-size: 18px; cursor: pointer; transition: var(--transition-fast);
+            display: flex; align-items: center; justify-content: center;
+        }
+        .action-btn:hover { background: var(--gold-color); color: var(--white); }
 
-    html { scroll-behavior: smooth; }
-  </style>
+        .product-info { padding: 25px 20px; text-align: center; }
+        .product-rating { color: var(--gold-color); font-size: 13px; margin-bottom: 10px; }
+        .product-title { font-size: 20px; color: var(--primary-color); margin-bottom: 15px; transition: var(--transition-fast); }
+        .product-card:hover .product-title { color: var(--gold-color); }
+        .product-price { display: flex; justify-content: center; align-items: center; gap: 10px; }
+        .new-price { font-size: 22px; font-weight: 800; color: var(--primary-color); }
+        .old-price { font-size: 16px; color: var(--text-light); text-decoration: line-through; }
+        
+        /* ==========================================
+           10. فيديو العرض (Video Banner)
+           ========================================== */
+        .video-banner {
+            position: relative; height: 70vh; display: flex; align-items: center; justify-content: center; text-align: center; overflow: hidden;
+        }
+        .video-banner video { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: 1; }
+        .video-overlay { position: absolute; inset: 0; background: rgba(59, 36, 18, 0.6); z-index: 2; }
+        .video-content { position: relative; z-index: 3; color: var(--white); padding: 0 20px; }
+        .play-btn {
+            width: 80px; height: 80px; background: rgba(212, 175, 55, 0.9); color: var(--white);
+            border-radius: 50%; display: inline-flex; align-items: center; justify-content: center;
+            font-size: 30px; margin-bottom: 30px; cursor: pointer; animation: pulsePlay 2s infinite; transition: var(--transition-fast);
+        }
+        .play-btn:hover { background: var(--white); color: var(--gold-color); transform: scale(1.1); }
+        @keyframes pulsePlay { 0% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.7); } 70% { box-shadow: 0 0 0 20px rgba(212, 175, 55, 0); } 100% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0); } }
+
+        /* ==========================================
+           11. الأرقام والإحصائيات (Stats Counters)
+           ========================================== */
+        .stats-section { background: var(--primary-color); padding: 80px 5%; color: var(--white); }
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; text-align: center; max-width: 1200px; margin: 0 auto; }
+        .stat-item i { font-size: 40px; color: var(--gold-color); margin-bottom: 20px; }
+        .stat-number { font-size: 50px; font-weight: 800; font-family: 'Playfair Display', serif; margin-bottom: 10px; display: inline-block; }
+        .stat-text { font-size: 18px; color: rgba(255,255,255,0.7); }
+
+        /* ==========================================
+           12. آراء العملاء (Testimonials)
+           ========================================== */
+        .testimonials-area { background: var(--bg-color); }
+        .testimonial-card {
+            background: var(--white); padding: 40px 30px; border-radius: 15px; box-shadow: var(--shadow-sm); text-align: center; border: 1px solid var(--border-color); margin: 20px;
+        }
+        .quote-icon { color: rgba(212, 175, 55, 0.2); font-size: 60px; margin-bottom: -20px; }
+        .client-text { font-size: 18px; font-style: italic; color: var(--text-dark); margin-bottom: 30px; line-height: 1.8; }
+        .client-info img { width: 70px; height: 70px; border-radius: 50%; object-fit: cover; border: 3px solid var(--gold-color); margin-bottom: 15px; }
+        .client-name { font-size: 20px; font-weight: 700; color: var(--primary-color); }
+        .client-role { font-size: 14px; color: var(--text-light); }
+
+        /* ==========================================
+           13. الفوتر (Footer)
+           ========================================== */
+        .footer { background: var(--primary-color); color: var(--white); padding-top: 80px; }
+        .footer-top { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; padding: 0 5% 60px; max-width: 1400px; margin: 0 auto; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .footer-col-title { color: var(--gold-color); font-size: 22px; margin-bottom: 30px; font-family: 'Playfair Display', serif; }
+        .footer-text { color: rgba(255,255,255,0.7); margin-bottom: 25px; line-height: 1.8; }
+        
+        .social-links { display: flex; gap: 15px; }
+        .social-links a { width: 40px; height: 40px; border-radius: 50%; background: rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center; transition: var(--transition-fast); }
+        .social-links a:hover { background: var(--gold-color); transform: translateY(-3px); }
+
+        .footer-links li { margin-bottom: 15px; }
+        .footer-links a { color: rgba(255,255,255,0.7); transition: var(--transition-fast); display: inline-flex; align-items: center; gap: 10px; }
+        .footer-links a:hover { color: var(--gold-color); padding-right: 10px; }
+        
+        .contact-info li { display: flex; gap: 15px; margin-bottom: 20px; color: rgba(255,255,255,0.7); }
+        .contact-info i { color: var(--gold-color); font-size: 20px; margin-top: 5px; }
+
+        .newsletter-form { display: flex; flex-direction: column; gap: 15px; }
+        .newsletter-form input { padding: 15px 20px; border-radius: 5px; border: none; background: rgba(255,255,255,0.1); color: var(--white); }
+        .newsletter-form input::placeholder { color: rgba(255,255,255,0.5); }
+        .newsletter-form button { padding: 15px; background: var(--gold-color); color: var(--white); border: none; border-radius: 5px; font-weight: bold; cursor: pointer; transition: var(--transition-fast); }
+        .newsletter-form button:hover { background: var(--gold-hover); }
+
+        .footer-bottom { padding: 25px 5%; text-align: center; color: rgba(255,255,255,0.5); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; max-width: 1400px; margin: 0 auto; }
+        .payment-methods img { height: 30px; margin-left: 10px; opacity: 0.7; filter: grayscale(100%); transition: 0.3s; }
+        .payment-methods img:hover { filter: grayscale(0%); opacity: 1; }
+
+        /* ==========================================
+           14. الأزرار العائمة (Sticky Actions)
+           ========================================== */
+        .sticky-actions { position: fixed; bottom: 30px; right: 30px; display: flex; flex-direction: column; gap: 15px; z-index: 999; }
+        .float-btn { width: 55px; height: 55px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px; color: var(--white); box-shadow: var(--shadow-md); cursor: pointer; transition: var(--transition-fast); text-decoration: none; }
+        .whatsapp-btn { background: #25D366; }
+        .whatsapp-btn:hover { background: #128C7E; transform: scale(1.1); }
+        .scroll-top-btn { background: var(--primary-color); opacity: 0; visibility: hidden; }
+        .scroll-top-btn.active { opacity: 1; visibility: visible; }
+        .scroll-top-btn:hover { background: var(--gold-color); transform: translateY(-5px); }
+
+        /* ==========================================
+           15. التجاوب مع الشاشات (Media Queries)
+           ========================================== */
+        @media (max-width: 991px) {
+            .nav-links, .nav-actions .user-btn, .nav-actions .search-btn { display: none; }
+            .menu-toggle { display: block; }
+            .slide-title { font-size: 40px; }
+            .features-bar { grid-template-columns: 1fr 1fr; margin-top: 0; border-radius: 0; }
+            .footer-bottom { flex-direction: column; text-align: center; }
+        }
+        @media (max-width: 768px) {
+            .features-bar { grid-template-columns: 1fr; }
+            .slide-title { font-size: 32px; }
+            .btn { padding: 12px 25px; font-size: 14px; }
+            .section-padding { padding: 60px 5%; }
+            .stats-grid { grid-template-columns: 1fr 1fr; }
+            .cat-box { height: 350px; }
+        }
+    </style>
 </head>
 <body>
 
-  <nav class="navbar">
-    <button class="nav-btn" data-target="hot-coffee">☕ قهوة ساخنة</button>
-    <button class="nav-btn" data-target="cold-drinks">🧊 قهوة باردة</button>
-    <button class="nav-btn" data-target="other-drinks">🍹 مشروبات أخرى</button>
-    <button class="nav-btn" data-target="desserts">🍰 حلويات</button>
-    <button class="nav-btn" data-target="bakery">🥐 مخبوزات</button>
-  </nav>
+    <div class="preloader" id="preloader">
+        <div class="loader-logo">ROYAL DATES</div>
+        <div class="loader-spinner"></div>
+    </div>
 
-  <div class="hero-title">
-    <div class="divider">⚜️ ◈ ⚜️</div>
-    <h1>GLOBAL BEANERY</h1>
-    <div class="tagline">Pick Moon · الباريستا</div>
-  </div>
+    <div class="announcement-bar">
+        <span>🚚 شحن مجاني للطلبات فوق 200 ريال داخل المملكة | 🎁 تسوق باقات الإهداء الآن بخصم 15%</span>
+    </div>
 
-  <main>
-    <section id="hot-coffee" class="menu-section">
-      <h2 class="section-title">قهوة ساخنة</h2>
-      <div class="menu-grid">
-        <div class="menu-item"><img src="https://images.unsplash.com/photo-1510707577719-5d6878021d47?q=80&w=400&h=400&fit=crop" alt=""><div class="item-name">اسبريسو</div><div class="item-price">12 ريال</div></div>
-        <div class="menu-item"><img src="https://images.unsplash.com/photo-1551030173-122aabc4489c?q=80&w=400&h=400&fit=crop" alt=""><div class="item-name">أمريكانو</div><div class="item-price">14 ريال</div></div>
-        <div class="menu-item"><img src="https://images.unsplash.com/photo-1541167760496-1628856ab772?q=80&w=400&h=400&fit=crop" alt=""><div class="item-name">لاتيه</div><div class="item-price">18 ريال</div></div>
-        <div class="menu-item"><img src="https://images.unsplash.com/photo-1572442388796-11668a67e53d?q=80&w=400&h=400&fit=crop" alt=""><div class="item-name">كابتشينو</div><div class="item-price">18 ريال</div></div>
-        <div class="menu-item"><img src="https://images.unsplash.com/photo-1552332386-f8dd00dc2f85?q=80&w=400&h=400&fit=crop" alt=""><div class="item-name">فلات وايت</div><div class="item-price">19 ريال</div></div>
-        <div class="menu-item"><img src="https://images.unsplash.com/photo-1594236054813-f66108151322?q=80&w=400&h=400&fit=crop" alt=""><div class="item-name">سبانش لاتيه</div><div class="item-price">21 ريال</div></div>
-        <div class="menu-item"><img src="https://images.unsplash.com/photo-1595111110354-944510b65378?q=80&w=400&h=400&fit=crop" alt=""><div class="item-name">موكا</div><div class="item-price">20 ريال</div></div>
-        <div class="menu-item"><img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?q=80&w=400&h=400&fit=crop" alt=""><div class="item-name">قهوة اليوم</div><div class="item-price">13 ريال</div></div>
-        <div class="menu-item"><img src="https://images.unsplash.com/photo-1580915411954-282cb1b0d780?q=80&w=400&h=400&fit=crop" alt=""><div class="item-name">القهوة العربية</div><div class="item-price">16 ريال</div></div>
-      </div>
+    <header id="main-header">
+        <div class="menu-toggle" onclick="toggleMobileMenu()"><i class="fa-solid fa-bars-staggered"></i></div>
+        
+        <a href="index.html" class="logo">ROYAL<span>DATES</span></a>
+        
+        <ul class="nav-links">
+            <li><a href="index.html" class="active">الرئيسية</a></li>
+            <li><a href="shop.html">المتجر</a></li>
+            <li><a href="about.html">من نحن</a></li>
+            <li><a href="#contact">تواصل معنا</a></li>
+        </ul>
+
+        <div class="nav-actions">
+            <button class="icon-btn search-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
+            <button class="icon-btn user-btn"><i class="fa-regular fa-user"></i></button>
+            <button class="icon-btn" onclick="location.href='cart.html'">
+                <i class="fa-solid fa-bag-shopping"></i>
+                <span class="cart-count">3</span>
+            </button>
+        </div>
+    </header>
+
+    <div class="mobile-menu-overlay" id="mobileOverlay" onclick="toggleMobileMenu()"></div>
+    <div class="mobile-menu" id="mobileMenu">
+        <i class="fa-solid fa-xmark close-menu" onclick="toggleMobileMenu()"></i>
+        <div class="mobile-nav-links">
+            <a href="index.html">الرئيسية</a>
+            <a href="shop.html">المتجر</a>
+            <a href="product-details.html">تفاصيل المنتج</a>
+            <a href="about.html">من نحن</a>
+            <a href="#contact">تواصل معنا</a>
+        </div>
+    </div>
+
+    <section class="hero-section">
+        <div class="swiper heroSwiper">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <div class="slide-bg" style="background-image: url('https://images.unsplash.com/photo-1604908176997-4311d7a5e5b5?auto=format&fit=crop&w=1920&q=80');"></div>
+                    <div class="slide-overlay"></div>
+                    <div class="slide-content">
+                        <span class="slide-subtitle">فخامة التراث السعودي</span>
+                        <h1 class="slide-title">أجود أنواع التمور<br>من المزرعة إليك</h1>
+                        <p class="slide-text">نعتني بكل حبة تمر لتصلك طازجة، طبيعية، وبتغليف فاخر يليق بمقامك في كل مناسبة.</p>
+                        <div class="btn-group">
+                            <a href="shop.html" class="btn btn-gold"><i class="fa-solid fa-cart-shopping"></i> تسوق الآن</a>
+                            <a href="#categories" class="btn btn-outline">اكتشف الأنواع</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="slide-bg" style="background-image: url('https://images.unsplash.com/photo-1622030411594-c282b0c2b4a4?auto=format&fit=crop&w=1920&q=80');"></div>
+                    <div class="slide-overlay"></div>
+                    <div class="slide-content">
+                        <span class="slide-subtitle">إهداءات ملكية</span>
+                        <h1 class="slide-title">باقات الهدايا الفاخرة<br>لمن تحب</h1>
+                        <p class="slide-text">عبر عن كرم ضيافتك وذوقك الرفيع مع تشكيلة واسعة من صناديق التمور المنسقة بعناية.</p>
+                        <div class="btn-group">
+                            <a href="shop.html" class="btn btn-gold">تصفح الهدايا</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-button-next" style="color: var(--gold-color);"></div>
+            <div class="swiper-button-prev" style="color: var(--gold-color);"></div>
+        </div>
     </section>
 
-    <section id="cold-drinks" class="menu-section">
-      <h2 class="section-title">قهوة باردة</h2>
-      <div class="menu-grid">
-        <div class="menu-item"><img src="https://images.unsplash.com/photo-1461023058943-07fcbe16d735?q=80&w=400&h=400&fit=crop" alt=""><div class="item-name">آيس لاتيه</div><div class="item-price">20 ريال</div></div>
-        <div class="menu-item"><img src="https://images.unsplash.com/photo-1553909489-ec2175ef3f52?q=80&w=400&h=400&fit=crop" alt=""><div class="item-name">آيس سبانش</div><div class="item-price">23 ريال</div></div>
-        <div class="menu-item"><img src="https://images.unsplash.com/photo-1543253332-999330833215?q=80&w=400&h=400&fit=crop" alt=""><div class="item-name">كولد برو</div><div class="item-price">22 ريال</div></div>
-        <div class="menu-item"><img src="https://images.unsplash.com/photo-1517701550927-30cf4bb1dba5?q=80&w=400&h=400&fit=crop" alt=""><div class="item-name">آيس وايت موكا</div><div class="item-price">24 ريال</div></div>
-        <div class="menu-item"><img src="https://images.unsplash.com/photo-1499638673689-79a0b5115d87?q=80&w=400&h=400&fit=crop" alt=""><div class="item-name">آيس تي</div><div class="item-price">15 ريال</div></div>
-        <div class="menu-item"><img src="https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?q=80&w=400&h=400&fit=crop" alt=""><div class="item-name">موهيتو</div><div class="item-price">19 ريال</div></div>
-      </div>
+    <div class="features-bar" data-aos="fade-up">
+        <div class="feature-item">
+            <div class="feature-icon"><i class="fa-solid fa-truck-fast"></i></div>
+            <div class="feature-text">
+                <h4>شحن سريع ومبرد</h4>
+                <p>توصيل آمن لجميع المناطق</p>
+            </div>
+        </div>
+        <div class="feature-item">
+            <div class="feature-icon"><i class="fa-solid fa-medal"></i></div>
+            <div class="feature-text">
+                <h4>جودة ملكية مضمونة</h4>
+                <p>تمور مختارة بعناية فائقة</p>
+            </div>
+        </div>
+        <div class="feature-item">
+            <div class="feature-icon"><i class="fa-solid fa-leaf"></i></div>
+            <div class="feature-text">
+                <h4>طبيعي 100%</h4>
+                <p>بدون أي إضافات صناعية</p>
+            </div>
+        </div>
+        <div class="feature-item">
+            <div class="feature-icon"><i class="fa-solid fa-shield-halved"></i></div>
+            <div class="feature-text">
+                <h4>دفع آمن وموثوق</h4>
+                <p>خيارات متعددة وميسرة</p>
+            </div>
+        </div>
+    </div>
+
+    <section id="categories" class="section-padding">
+        <div class="section-header" data-aos="fade-up">
+            <span class="section-subtitle">اختر ما يناسب ذوقك</span>
+            <h2 class="section-title">أقسامنا المختارة</h2>
+        </div>
+        <div class="categories-grid">
+            <div class="cat-box" data-aos="fade-up" data-aos-delay="100" onclick="location.href='shop.html'">
+                <img src="https://images.unsplash.com/photo-1596434451733-40615dfcf20b?auto=format&w=800" alt="تمور فاخرة">
+                <div class="cat-overlay">
+                    <h3>عجوة المدينة</h3>
+                    <p>المحصول الأفضل للمناسبات الخاصة والضيافة <i class="fa-solid fa-arrow-left"></i></p>
+                </div>
+            </div>
+            <div class="cat-box" data-aos="fade-up" data-aos-delay="200" onclick="location.href='shop.html'">
+                <img src="https://images.unsplash.com/photo-1626015502738-92f9d659779f?auto=format&w=800" alt="سكري مكنوز">
+                <div class="cat-overlay">
+                    <h3>سكري القصيم</h3>
+                    <p>طعم الحلاوة الأصيلة والتراث العريق <i class="fa-solid fa-arrow-left"></i></p>
+                </div>
+            </div>
+            <div class="cat-box" data-aos="fade-up" data-aos-delay="300" onclick="location.href='shop.html'">
+                <img src="https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&w=800" alt="باقات الهدايا">
+                <div class="cat-overlay">
+                    <h3>باقات الهدايا الملكية</h3>
+                    <p>صناديق فاخرة لإهداء من تحب <i class="fa-solid fa-arrow-left"></i></p>
+                </div>
+            </div>
+        </div>
     </section>
 
-    <section id="desserts" class="menu-section">
-      <h2 class="section-title">حلويات</h2>
-      <div class="menu-grid">
-        <div class="menu-item"><img src="https://images.unsplash.com/photo-1579372781878-66802b286cfc?q=80&w=400&h=400&fit=crop" alt=""><div class="item-name">سان سباستيان</div><div class="item-price">32 ريال</div></div>
-        <div class="menu-item"><img src="https://images.unsplash.com/photo-1571115177098-24ec42ed2bb4?q=80&w=400&h=400&fit=crop" alt=""><div class="item-name">تيراميسو</div><div class="item-price">29 ريال</div></div>
-        <div class="menu-item"><img src="https://images.unsplash.com/photo-1533134242443-d4fd215305ad?q=80&w=400&h=400&fit=crop" alt=""><div class="item-name">تشيز كيك</div><div class="item-price">27 ريال</div></div>
-        <div class="menu-item"><img src="https://images.unsplash.com/photo-1606313564200-e75d5e30476c?q=80&w=400&h=400&fit=crop" alt=""><div class="item-name">براونيز</div><div class="item-price">22 ريال</div></div>
-      </div>
+
+    <section class="video-banner">
+        <video autoplay muted loop playsinline>
+            <source src="https://assets.mixkit.co/videos/preview/mixkit-close-up-of-a-piles-of-dates-40502-large.mp4" type="video/mp4">
+        </video>
+        <div class="video-overlay"></div>
+        <div class="video-content" data-aos="zoom-in">
+            <div class="play-btn"><i class="fa-solid fa-play"></i></div>
+            <h2 class="section-title" style="color: #fff;">رحلة التمر من النخلة إلى مائدتك</h2>
+            <p style="font-size: 18px; max-width: 600px; margin: 20px auto 0; opacity: 0.9;">
+                شاهد كيف نعتني بمحصولنا في مزارع النخبة، نطبق أعلى معايير الجودة والتنظيف لنضمن وصول التمر إليك بأبهى حلة وألذ طعم.
+            </p>
+        </div>
     </section>
 
-    <section id="bakery" class="menu-section">
-      <h2 class="section-title">مخبوزات</h2>
-      <div class="menu-grid">
-        <div class="menu-item"><img src="https://images.unsplash.com/photo-1555507036-ab1f4038808a?q=80&w=400&h=400&fit=crop" alt=""><div class="item-name">كرواسون زبدة</div><div class="item-price">15 ريال</div></div>
-        <div class="menu-item"><img src="https://images.unsplash.com/photo-1530610476181-d83430b64dcd?q=80&w=400&h=400&fit=crop" alt=""><div class="item-name">كرواسون جبن</div><div class="item-price">18 ريال</div></div>
-        <div class="menu-item"><img src="https://images.unsplash.com/photo-1549438102-193c76282764?q=80&w=400&h=400&fit=crop" alt=""><div class="item-name">دنش قرفة</div><div class="item-price">20 ريال</div></div>
-      </div>
+    <section class="stats-section">
+        <div class="stats-grid">
+            <div class="stat-item" data-aos="fade-up">
+                <i class="fa-solid fa-users"></i>
+                <div class="stat-number" data-target="15000">0</div>
+                <div class="stat-text">عميل سعيد يثق بنا</div>
+            </div>
+            <div class="stat-item" data-aos="fade-up" data-aos-delay="100">
+                <i class="fa-solid fa-box-open"></i>
+                <div class="stat-number" data-target="50">0</div>
+                <div class="stat-text">نوع فاخر من التمور</div>
+            </div>
+            <div class="stat-item" data-aos="fade-up" data-aos-delay="200">
+                <i class="fa-solid fa-map-location-dot"></i>
+                <div class="stat-number" data-target="13">0</div>
+                <div class="stat-text">منطقة نغطيها بالشحن</div>
+            </div>
+            <div class="stat-item" data-aos="fade-up" data-aos-delay="300">
+                <i class="fa-solid fa-calendar-check"></i>
+                <div class="stat-number" data-target="10">0</div>
+                <div class="stat-text">سنوات من الخبرة والريادة</div>
+            </div>
+        </div>
     </section>
-  </main>
 
-  <div class="pick-moon">
-    <img class="moon-image" id="moonImage" src="https://i.postimg.cc/YCNSNY2R/pngimg-com-pokemon-PNG14.png" alt="بيك مون">
-    <div class="speech-bubble" id="speechBubble">أهلاً! أنا بيك مون 🦝</div>
-  </div>
+    <section class="testimonials-area section-padding">
+        <div class="section-header" data-aos="fade-up">
+            <span class="section-subtitle">ماذا يقولون عنا</span>
+            <h2 class="section-title">آراء شركاء النخبة</h2>
+        </div>
+        
+        <div class="swiper testimonialsSwiper" style="max-width: 1000px; margin: 0 auto; padding-bottom: 40px;" data-aos="fade-up">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <div class="testimonial-card">
+                        <i class="fa-solid fa-quote-right quote-icon"></i>
+                        <p class="client-text">"أفضل تمر عجوة جربته في حياتي! الحبة كبيرة وطرية والتغليف يبيض الوجه فعلاً، أرسلته هدية للوالدة ودعت لي. شكراً تمور النخبة."</p>
+                        <div class="client-info">
+                            <h4 class="client-name">عبدالله العتيبي</h4>
+                            <span class="client-role">عميل مميز (الرياض)</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="testimonial-card">
+                        <i class="fa-solid fa-quote-right quote-icon"></i>
+                        <p class="client-text">"خدمة العملاء سريعة جداً، والشحن وصلني مبرد وفي وقت قياسي. التمر السكري المفتل جودته فوق الوصف. سأعتمدكم دائماً."</p>
+                        <div class="client-info">
+                            <h4 class="client-name">نورة السالم</h4>
+                            <span class="client-role">عميل (جدة)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-pagination"></div>
+        </div>
+    </section>
 
-  <script>
-    const moonStates = [
-      { text: 'مرحباً بك في عالم القهوة اللذيذة ☕', img: 'https://i.postimg.cc/YCNSNY2R/pngimg-com-pokemon-PNG14.png' },
-      { text: 'همم... ماذا تطلب اليوم؟', img: 'https://i.postimg.cc/kG5SzwGg/Pokemon-Pikachu-PNG-Background-Image.png' },
-      { text: '🔥 الأكثر مبيعاً: سان سباستيان!', img: 'https://i.postimg.cc/J0Js9gmn/566f66bd93c2b151a32954a5.png' },
-      { text: 'جرب سبانش لاتيه، تحفة ', img: 'https://i.postimg.cc/J0Js9gmn/566f66bd93c2b151a32954a5.png' }
-    ];
+    <footer class="footer" id="contact">
+        <div class="footer-top">
+            <div class="footer-col" data-aos="fade-up">
+                <h3 class="logo" style="margin-bottom: 20px;">ROYAL<span>DATES</span></h3>
+                <p class="footer-text">
+                    نحن في تمور النخبة نعتز بتقديم أجود أنواع التمور السعودية المحصودة بعناية من أفضل المزارع، لنضع بين يديك فخامة التراث الأصيل.
+                </p>
+                <div class="social-links">
+                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+                    <a href="#"><i class="fa-brands fa-snapchat"></i></a>
+                    <a href="#"><i class="fa-brands fa-tiktok"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-col" data-aos="fade-up" data-aos-delay="100">
+                <h4 class="footer-col-title">روابط سريعة</h4>
+                <ul class="footer-links">
+                    <li><a href="about.html"><i class="fa-solid fa-angle-left"></i> قصتنا</a></li>
+                    <li><a href="shop.html"><i class="fa-solid fa-angle-left"></i> المتجر الإلكتروني</a></li>
+                    <li><a href="#"><i class="fa-solid fa-angle-left"></i> سياسة الاستبدال والاسترجاع</a></li>
+                    <li><a href="#"><i class="fa-solid fa-angle-left"></i> الشروط والأحكام</a></li>
+                    <li><a href="#"><i class="fa-solid fa-angle-left"></i> تتبع طلبك</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-col" data-aos="fade-up" data-aos-delay="200">
+                <h4 class="footer-col-title">تواصل معنا</h4>
+                <ul class="contact-info">
+                    <li>
+                        <i class="fa-solid fa-location-dot"></i>
+                        <span>المملكة العربية السعودية<br>الرياض، حي الملقا</span>
+                    </li>
+                    <li>
+                        <i class="fa-solid fa-phone"></i>
+                        <span dir="ltr">+966 50 123 4567</span>
+                    </li>
+                    <li>
+                        <i class="fa-solid fa-envelope"></i>
+                        <span>info@royaldates.sa</span>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="footer-col" data-aos="fade-up" data-aos-delay="300">
+                <h4 class="footer-col-title">النشرة البريدية</h4>
+                <p class="footer-text">اشترك معنا ليصلك كل جديد عن المحاصيل الطازجة والعروض الحصرية.</p>
+                <form class="newsletter-form" onsubmit="event.preventDefault(); alert('تم الاشتراك بنجاح!');">
+                    <input type="email" placeholder="أدخل بريدك الإلكتروني" required>
+                    <button type="submit">اشترك الآن</button>
+                </form>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2026 تمور النخبة. جميع الحقوق محفوظة. تطوير بكل <i class="fa-solid fa-heart" style="color: #dc3545;"></i> وفخامة.</p>
+            <div class="payment-methods">
+                <i class="fa-brands fa-cc-visa fa-2x"></i>
+                <i class="fa-brands fa-cc-mastercard fa-2x"></i>
+                <i class="fa-brands fa-apple-pay fa-2x"></i>
+                <i class="fa-solid fa-money-bill-wave fa-2x"></i>
+            </div>
+        </div>
+    </footer>
 
-    let index = 0;
-    const imgEl = document.getElementById('moonImage');
-    const txtEl = document.getElementById('speechBubble');
+    <div class="sticky-actions">
+        <a href="https://wa.me/966501234567" target="_blank" class="float-btn whatsapp-btn" title="تواصل عبر الواتساب">
+            <i class="fa-brands fa-whatsapp"></i>
+        </a>
+        <a href="#" class="float-btn scroll-top-btn" id="scrollTopBtn" title="العودة للأعلى">
+            <i class="fa-solid fa-arrow-up"></i>
+        </a>
+    </div>
 
-    setInterval(() => {
-      index = (index + 1) % moonStates.length;
-      imgEl.style.opacity = '0';
-      setTimeout(() => {
-        imgEl.src = moonStates[index].img;
-        txtEl.textContent = moonStates[index].text;
-        imgEl.style.opacity = '1';
-      }, 300);
-    }, 15000);
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
-    // سكريبت التنقل
-    document.querySelectorAll('.nav-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const target = document.getElementById(btn.dataset.target);
-        window.scrollTo({ top: target.offsetTop - 80, behavior: 'smooth' });
-      });
-    });
-  </script>
+    <script>
+        // 1. إخفاء شاشة التحميل (Preloader)
+        window.addEventListener('load', function() {
+            const preloader = document.getElementById('preloader');
+            setTimeout(() => {
+                preloader.classList.add('fade-out');
+            }, 500); // تأخير بسيط ليظهر اللوجو
+        });
+
+        // 2. تفعيل مكتبة الحركات (AOS)
+        AOS.init({
+            duration: 800,
+            offset: 100,
+            once: true // الحركة تحدث مرة واحدة فقط
+        });
+
+        // 3. تأثير الهيدر عند النزول وتفعيل زر الصعود للأعلى
+        const header = document.getElementById('main-header');
+        const scrollTopBtn = document.getElementById('scrollTopBtn');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+                scrollTopBtn.classList.add('active');
+            } else {
+                header.classList.remove('scrolled');
+                scrollTopBtn.classList.remove('active');
+            }
+        });
+
+        // 4. فتح وإغلاق قائمة الجوال
+        const mobileMenu = document.getElementById('mobileMenu');
+        const mobileOverlay = document.getElementById('mobileOverlay');
+
+        function toggleMobileMenu() {
+            mobileMenu.classList.toggle('active');
+            mobileOverlay.classList.toggle('active');
+            // منع التمرير في الخلفية عند فتح القائمة
+            document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : 'auto';
+        }
+
+        // 5. إعداد الهيرو سلايدر (Hero Swiper)
+        const heroSwiper = new Swiper(".heroSwiper", {
+            loop: true,
+            effect: "fade",
+            autoplay: {
+                delay: 6000,
+                disableOnInteraction: false,
+            },
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+        });
+
+        // 6. إعداد سلايدر المنتجات (Products Swiper)
+        const productsSwiper = new Swiper(".productsSwiper", {
+            slidesPerView: 1,
+            spaceBetween: 20,
+            autoplay: {
+                delay: 4000,
+            },
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+            breakpoints: {
+                640: { slidesPerView: 2, spaceBetween: 20 },
+                992: { slidesPerView: 3, spaceBetween: 30 },
+                1200: { slidesPerView: 4, spaceBetween: 30 },
+            },
+        });
+
+        // 7. إعداد سلايدر التقييمات (Testimonials Swiper)
+        const testimonialsSwiper = new Swiper(".testimonialsSwiper", {
+            slidesPerView: 1,
+            spaceBetween: 30,
+            loop: true,
+            autoplay: { delay: 5000 },
+            pagination: { el: ".swiper-pagination", clickable: true },
+            breakpoints: {
+                768: { slidesPerView: 2 },
+            }
+        });
+
+        // 8. أنيميشن العدادات (Counter Animation)
+        const counters = document.querySelectorAll('.stat-number');
+        let hasCounted = false;
+
+        const startCounting = () => {
+            counters.forEach(counter => {
+                const target = +counter.getAttribute('data-target');
+                const duration = 2000; // 2 seconds
+                const increment = target / (duration / 16); // 60fps
+                
+                let current = 0;
+                const updateCounter = () => {
+                    current += increment;
+                    if (current < target) {
+                        counter.innerText = Math.ceil(current);
+                        requestAnimationFrame(updateCounter);
+                    } else {
+                        counter.innerText = target + (target > 1000 ? '+' : '');
+                    }
+                };
+                updateCounter();
+            });
+        };
+
+        // تشغيل العداد عند الوصول للقسم
+        window.addEventListener('scroll', () => {
+            const statsSection = document.querySelector('.stats-section');
+            if (!hasCounted && window.scrollY + window.innerHeight > statsSection.offsetTop + 100) {
+                startCounting();
+                hasCounted = true;
+            }
+        });
+    </script>
 </body>
 </html>
